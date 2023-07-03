@@ -1,5 +1,192 @@
+/* Toggle Screen */
+
+#splash-scr {
+  display: none;
+}
+
+#game-scr {
+  display: block !important;
+}
+
+/* #end-game-scr {
+  display: block !important;
+} */
+
+/* ---------General--------- */
+body {
+  font-family: 'Changa', sans-serif;
+}
+
+
+/* ---------Splash Screen--------- */
+#splash-scr {
+  position: relative;
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.centered h2 {
+  margin-top: 8rem;
+}
+
+.start-game-box {
+  border: thick double black;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: rgb(253, 239, 220);
+  /* background-image: url(../images/start-game-box-bkg.jpg); */
+}
+
+
+#splash-scr div {
+  position: relative;
+  z-index: 10;
+}
+
+#main-background {
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.hero-selection div {
+  width: 8rem;
+  display: inline-block;
+  border: 1px solid white;
+  text-align: center;
+  background-color:rgb(253, 244, 232);
+  border-radius: 10px;
+}
+
+.hero-selection img {
+  width: 8rem;
+}
+
+.level-select {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.level-select input[type="radio"] {
+  /* Hide the default radio button */
+  display: none;
+}
+
+.level-select label {
+  /* Custom styles for the radio button */
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #eaeaea;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.level-select input[type="radio"]:checked + label  {
+  /* Styles for the checked radio button */
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.hero-selection input[type="radio"] {
+  /* Hide the default radio button */
+  display: none;
+}
+
+.hero-selection label {
+  cursor: pointer;
+}
+
+.hero-selection input[type="radio"]:checked + label {
+  border: .0625rem solid rgb(28, 149, 38);
+  border-radius:10px;
+  margin-bottom: 0;
+}
+
+.intro-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#inputname {
+  width: 60%;
+  border-radius: 3px;
+}
+
+.name-credits-flex {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+#inputname::placeholder {
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
+
+.sub-heading {
+  font-weight: 600;
+}
+
+.p-difficulty {
+  margin-top: 1rem;
+}
+
+.start-credit-flex {
+  display: flex;
+  justify-content: space-around;
+}
+/* ---------Game Screen--------- */
+.header-1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background-color: #eaeaea;
+}
+
+.header-2 {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.4rem;
+  background-color: antiquewhite;
+}
+
+.header-2 p {
+  margin: 0;
+}
+
+.battle-screen img {
+  width: 100%;
+  height: 37rem;
+  object-fit: cover;
+  object-position: top;
+  box-shadow: 0px 3px 6px 1px black;
+}
+
+.typing-screen {
+  width: 60%;
+  margin: 0 auto;
+  border-left: 4mm ridge rgba(71, 72, 55, 0.6);
+  border-right: 4mm ridge rgba(71, 72, 55, 0.6);
+  height: 17.7rem;
+  line-height: 2rem;
+  padding: 1rem 1.5rem;
+  font-size:1.1rem;
+}
+
+/* font-size for the text in the paragraph */
 span {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 /* color the correct and incorrect letters*/
@@ -111,3 +298,6 @@ main {
   width: 40rem;
   height: 15rem;
 }
+
+
+/* ---------End Game Screen--------- */

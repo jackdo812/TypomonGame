@@ -1,61 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Type Tester Demo</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typomon</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Customer CSS Styles -->
     <link rel="stylesheet" href="./styles/index.css" />
   </head>
   <body>
     <main>
-      <!-- Paragragh Generated Here -->
-      <div id="target"></div>
-      <!-- Heros Attacks -->
-      <div id="fireball" class="hero-attack-1">
-        <img src="images/Fireball.png" alt="">
+      <!-- Splash Screen -->
+      <section id="splash-scr" class="splash-screen screen">
+        <div class="start-game-info centered">
+        <h2>Typomon</h2>
+          <div class="start-game-box">
+            <div class="intro-flex">
+              <p> Welcome to your new adventure!</p>
+              <button type="button" class="btn btn-info btn-instruction" data-bs-toggle="modal" data-bs-target="#modal-instruction">Instructions</button> 
+            </div>
+            <label for="inputname"></label>
+            <div class="name-credits-flex">
+              <input type="text" name="inputname" id="inputname" placeholder="Enter Your Name">
+              <button type="button" class="btn btn-secondary credits" data-bs-toggle="modal" data-bs-target="#modal-credits">Credits</button>
+            </div>
+            <p class="sub-heading">Choose your Hero:</p>
+            <div class="hero-selection">
+              <input type="radio" name="hero" id="hero-leaf" value="leaf">
+              <label for="hero-leaf">
+                <div>
+                  <img id="leaf" src="images/character-leaf.png" alt="character hero leaf">
+                  <p>Leaf</p>
+                </div>
+              </label>
+              <input type="radio" name="hero" id="hero-water" value="water">
+              <label for="hero-water">
+                <div>
+                  <img id="water" src="images/character-water.png" alt="character hero water">
+                  <p>Water</p>
+                </div>
+              </label>
+              <input type="radio" name="hero" id="hero-fire" value="fire">
+              <label for="hero-fire">
+                <div>
+                  <img id="fire" src="images/character-fire.png" alt="character hero fire">
+                  <p>Fire</p>
+                </div>
+              </label>
+            </div>
+            <p class="sub-heading p-difficulty">Difficulty level:</p>
+            <div class="level-select">
+              <input type="radio" id="easy" name="difficulty" value="easy">
+              <label for="easy">Easy</label>
+              <input type="radio" id="normal" name="difficulty" value="normal">
+              <label for="normal">Normal</label>
+              <input type="radio" id="hard" name="difficulty" value="hard">
+              <label for="hard" id="hard-label">Hard</label>
+            </div>
+            <div class="start-credit-flex">
+        
+              <button type="button" class="btn btn-success btn-start">Start Game</button>
+            </div>
+          </div>
+        </div>
+        <img id="main-background" src="images/splash_bg.png" alt="background splash screen">
+      </section>
+    <!-- Game Screen -->
+    <section id="game-scr" class="game-screen screen" style="display: none;">
+        <div class="header-1">
+          <button type="button" class="btn btn-info btn-help" data-bs-toggle="modal" data-bs-target="#modal-game">Help</button>
+          <h2>Battle</h2>
+          <button type="button" class="btn btn-warning btn-end-game">Quit</button>
+        </div>
+        <div class="header-2">
+          <p>Name:</p>
+          <p>Mode:</p>
+          <p>Round:</p>
+          <p>Timer: <span id="mins">01</span>: <span id="secs">30</span></p>
+        </div>
+        <div class="battle-screen">
+          <img src="images/battle_bg.png" alt="battle background">
+        </div>
+        <!-- Paragragh Generated Here -->
+        <div class="typing-screen">
+          <div id="target"></div>
+        </div>
+        <!-- Heros Attacks -->
+        <div id="fireball" class="hero-attack-1">
+          <img src="images/Fireball.png" alt="">
+        </div>
+        <div id="fire-spelling" class="spelling">
+          <img src="gifs/Fire_attack.gif" alt="">
+        </div>
+        <div id="inferno" class="hero-attack-2">
+          <img src="gifs/Inferno_Attack.gif" alt="">
+        </div>
+        <div id="watergun" class="hero-attack-1">
+          <img src="images/WaterGun.png" alt="">
+        </div>
+        <div id="water-spelling" class="spelling">
+          <img src="gifs/water_attack.gif" alt="">
+        </div>
+        <div id="wave" class="hero-attack-1">
+          <img src="images/Waves.png" alt="">
+        </div>
+        <div id="razorleaf" class="hero-attack-1">
+          <img src="images/RazorLeaf.png" alt="">
+        </div>
+        <div id="leaf-spelling" class="spelling">
+          <img src="gifs/leaf_attack.gif" alt="">
+        </div>
+        <div id="solarbeam" class="hero-attack-2">
+          <img src="gifs/Solarbeam_Attack.gif" alt="">
+        </div>
+        <!-- Monster Take Damage -->
+        <div id="monster-shaking" class="monster-hurt">
+          <img src="gifs/Monster_hurt.gif" alt="">
+        </div>
+        <!-- Audio -->
+        <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
+        <audio id="fire-ball-audio" src="audio/fire-ball.wav"></audio>
+        <audio id="water-gun-audio" src="audio/water-gun-500.mp3"></audio>
+        <audio id="razor-leaf-audio" src="audio/razor-leaf.wav"></audio>
+        <audio id="waves-audio" src="audio/waves.wav"></audio>
+        <audio id="solar-beam-audio" src="audio/solarbeam.wav"></audio>
+      </section>
+    <!-- End-game Screen -->
+    <section id="end-game-scr" class="end-game-screen screen" style="display: none;">
+        <h2>End Game Screen</h2>
+        <p>Congratulations!!! You did it... Thanks so much for saving us...You are the truly Hero. If you want to challenge yourself again, you can click "Play Again" button. It will create a spell to revive the monster. But be careful, that monster is not a joke.</p>
+        <button type="button" class="btn btn-danger btn-quit-1">Quit</button>
+        <button type="button" class="btn btn-success btn-play-again">Play Again</button>
+    </section>
+    <!-- Modals -->
+    <section id="modal-section">
+      <div id="modal-instruction" class="modal fade" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">How to Start your Journey</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                  <li>Enter your name.</li>
+                  <li>Choose your Hero.</li>
+                  <li>Click on "Start Game"</li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary btn-moreinfo" data-bs-toggle="modal" data-bs-target="#modal-game" data-bs-dismiss="modal">More info</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="fire-spelling" class="spelling">
-        <img src="gifs/Fire_attack.gif" alt="">
+      
+      <div id="modal-game" class="modal fade" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Game Rules</h5>
+              <button type="button" class="btn-close btn-close-x" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p> To be annouced...</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-close-tab" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" style="display: none;">Got it</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="inferno" class="hero-attack-2">
-        <img src="gifs/Inferno_Attack.gif" alt="">
+
+      <div id="modal-credits" class="modal fade" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Credits</h5>
+              <button type="button" class="btn-close btn-close-x" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p> Credits</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-close-tab" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" style="display: none;">Got it</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="watergun" class="hero-attack-1">
-        <img src="images/WaterGun.png" alt="">
-      </div>
-      <div id="water-spelling" class="spelling">
-        <img src="gifs/water_attack.gif" alt="">
-      </div>
-      <div id="wave" class="hero-attack-1">
-        <img src="images/Waves.png" alt="">
-      </div>
-      <div id="razorleaf" class="hero-attack-1">
-        <img src="images/RazorLeaf.png" alt="">
-      </div>
-      <div id="leaf-spelling" class="spelling">
-        <img src="gifs/leaf_attack.gif" alt="">
-      </div>
-      <div id="solarbeam" class="hero-attack-2">
-        <img src="gifs/Solarbeam_Attack.gif" alt="">
-      </div>
-      <!-- Monster Take Damage -->
-      <div id="monster-shaking" class="monster-hurt">
-        <img src="gifs/Monster_hurt.gif" alt="">
-      </div>
-      <!-- Audio -->
-      <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
-      <audio id="fire-ball-audio" src="audio/fire-ball.wav"></audio>
-      <audio id="water-gun-audio" src="audio/water-gun-500.mp3"></audio>
-      <audio id="razor-leaf-audio" src="audio/razor-leaf.wav"></audio>
-      <audio id="waves-audio" src="audio/waves.wav"></audio>
-      <audio id="solar-beam-audio" src="audio/solarbeam.wav"></audio>
+    </section>  
+      
     </main>
     
-    <script
-      src="https://code.jquery.com/jquery-3.7.0.min.js"
-      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-      crossorigin="anonymous"
-    ></script>
-    <script src="./scripts/index.js"></script>
+   <!-- jQuery -->
+   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+   <!-- Bootstrap -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <!-- Custom Script -->
+  <script src="./scripts/index.js"></script>
   </body>
 </html>
