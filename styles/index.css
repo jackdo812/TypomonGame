@@ -1,0 +1,113 @@
+span {
+  font-size: 2rem;
+}
+
+/* color the correct and incorrect letters*/
+.correct {
+  color: green;
+}
+.incorrect {
+  color: red;
+}
+
+/* make cursor position blinking and has yellow background */
+.cursorPosition {
+  
+  text-decoration: underline;
+  animation: blink 0.8s infinite;
+}
+
+.cursorPosition-bkg {
+  background-color: yellow; 
+}
+
+@keyframes blink {
+  0% {
+    text-decoration-color: transparent;
+  }
+  50% {
+    text-decoration-color: black;
+  }
+  100% {
+    text-decoration-color: transparent;
+  }
+}
+
+/* Animation for static image */
+main {
+  position: relative;
+}
+.hero-attack-1 {
+  position: absolute;
+  animation: move-to-the-right 1000ms forwards;
+  display: none;
+  left: 3rem;
+}
+
+@keyframes move-to-the-right {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(700px);
+    opacity: 0.8;
+  }
+}
+
+.hero-attack-1 img {
+  width: 10rem;
+  height: auto; 
+}
+
+#watergun img,
+.hero-attack-2 img {
+  width: 15rem;
+  height: auto;
+}
+
+.hero-attack-2 {
+  position: absolute;
+  display: none;
+}
+
+
+
+#wave img {
+  width: 20rem;
+  z-index: 10;
+}
+
+/* GIFs */
+
+.spelling {
+  position:absolute;
+  display: none;
+}
+
+.monster-hurt {
+  position:absolute;
+  display: none;
+  right: 3rem;
+}
+
+.spelling img,
+.monster-hurt img {
+  width: 18rem;
+  height: auto;
+}
+
+#inferno {
+  right: 5rem;
+  z-index: 10;
+  top: 13rem;
+}
+
+#solarbeam {
+  left: 15rem;
+  z-index: 10;
+}
+
+#solarbeam img {
+  width: 40rem;
+  height: 15rem;
+}
