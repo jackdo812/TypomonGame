@@ -14,6 +14,7 @@ const game = {
   runFinalAnimation: false,
   chosenHero: 'fire',
   loopDuration: 1,
+  selectedOption: null,
   fetchTheBacon: () => {
     $.getJSON(
       "https://baconipsum.com/api/?callback=?",
@@ -288,6 +289,22 @@ const game = {
     // fetch the (bacon) target
     game.fetchTheBacon();
     $(window).on("keyup", game.handleKeyup);
+
+    // stlying mode buttons
+    $('[name="difficulty"]').on('change', function() {
+      game.selectedOption = $(this).val();
+      console.log("Selected difficulty: " + game.selectedOption);
+    
+      $('[name="difficulty"]').each(function() {
+        if ($(this).val() === 'hard') {
+          $(this).next('label').css('background-color', game.selectedOption === 'hard' ? 'red' : '');
+        } else if ($(this).val() === 'normal') {
+          $(this).next('label').css('background-color', game.selectedOption === 'normal' ? 'orange' : '');
+        } else {
+          $(this).next('label').css('background-color', '');
+        }
+      });
+    });
   },
 };
 
