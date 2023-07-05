@@ -1,6 +1,8 @@
 "use strict";
 
 const game = {
+  isRunning: false,
+  wasRunning: false,
   targetWords: [],
   targetText: [],
   userText: [],
@@ -18,6 +20,10 @@ const game = {
   currentMode: 'easy', 
   currentRound: '1', 
   numberOfParagraph: 2,
+  totalTime: 180,
+  timeRemaining: 180,
+  minutes: $('#mins'),
+  seconds: $('#secs'),
   fetchTheBacon: () => {
     let paragraph = '';
     // Set the conditions to generate the paragraph based on the mode and round
@@ -138,34 +144,6 @@ const game = {
     };
   },
   
-
-  // heroFirstAttackAnimation: function () {
-  //   if (game.chosenHero === 'fire') {
-  //     $('#fire-spelling').addClass("spelling").show().one("animationend", function () {
-  //       $('#fire-spelling').removeClass("spelling").hide();
-  //       $('#fireball').addClass("hero-attack-1").show().one("animationend", function () {
-  //         console.log('done casting fireball');
-  //         $('#fireball').removeClass("hero-attack-1").hide();
-  //         game.runFirstAnimation = true;
-  //       });  
-  //     });
-      
-       
-  //   } else if (game.chosenHero === 'water') {
-  //     $('#watergun').addClass("hero-attack-1").show().one("animationend", function () {
-  //       $('#watergun').removeClass("hero-attack-1").hide();
-  //       game.runFirstAnimation = true;
-  //     });
-      
-  //   } else if (game.chosenHero === 'leaf') {
-  //     $('#razorleaf').addClass("hero-attack-1").show().one("animationend", function () {
-  //       $('#razorleaf').removeClass("hero-attack-1").hide();
-  //       game.runFirstAnimation = true;
-  //     });
-      
-  //   }
-  // },
-
   heroFirstAttackAnimation: function () {
     if (game.chosenHero === 'fire') {
       //Spelling animation
@@ -285,14 +263,59 @@ const game = {
       };
   },
             
-          
-
   monsterHurt: function () {
     $('#monster-shaking').addClass("monster-hurt").show();
     game.timeoutId = setTimeout (function () {
       $('#monster-shaking').removeClass("monster-hurt").hide();
     }, game.loopDuration * 800); 
     $('#takehit-audio')[0].play();
+  },
+
+  // ------ Timer Set Up -------
+  toggleBtn: function () {
+    game.isRunning = !game.isRunning;
+  },
+  updateClockDisplay: function() {
+    let newMins = Math.floor(game.timeRemaining / 60);
+    let newSeconds = game.timeRemaining % 60;
+    let newMinsFormat = ('0'+ newMins).slice(-2);
+    let newSecondsFormat = ('0' + newSeconds).slice(-2);
+    game.minutes.html(newMinsFormat);
+    game.seconds.html(newSecondsFormat);
+  },
+
+  // these lines of code plays a role of count down time and reset the whole game when time is out.
+  countdownLoop: function() {
+    if (game.isRunning) {
+        if (game.timeRemaining >0) {
+            game.timeRemaining --;
+            game.updateClockDisplay();
+            // clearTimeout(timeoutId);
+            game.timeoutId = setTimeout(game.countdownLoop,game.loopDuration * 1000);
+            console.log(game.timeREmaining);
+        } else if (game.timeRemaining <= 0) {
+            // clearTimeout(game.timeoutId);
+            window.setTimeout(game.resetTimer,3000);
+        }
+    };
+  },  
+    // start the timer loop and pause it.
+  startTimer: function() {
+    if (!game.isRunning) {
+        game.toggleBtn();
+        game.timeoutId = setTimeout(game.countdownLoop, game.loopDuration);
+    } else if (game.isRunning) {
+        game.toggleBtn();
+        clearTimeout(game.timeoutId); // this line of code helps to clear the time loop when we pause.
+    };
+  },
+
+  resetTimer: function() {
+      // initialize the clock back to total time (90s)
+      game.timeRemaining = game.totalTime;
+      // set the clock back to 90s and the progress bar to full width
+      game.updateClockDisplay();
+      
   },
 
   init: () => {
