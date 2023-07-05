@@ -14,7 +14,7 @@ const game = {
   timeoutId: null,
   runFirstAnimation: false,
   runFinalAnimation: false,
-  chosenHero: 'leaf',
+  chosenHero: 'water',
   heroFire: $('#fire-standing'),
   heroWater: $('#water-standing'),
   heroLeaf: $('#leaf-standing'),
@@ -310,6 +310,14 @@ const game = {
     game.timeoutId = setTimeout (function () {
       game.monster.show()}, 800); 
     $('#takehit-audio')[0].play();
+  },
+
+  monsterAttack: function (){
+    $('#shadowball-audio')[0].play();
+    $('#shadowball').addClass("monster-attack").show();
+    game.timeoutId = setTimeout (function () {
+      $('#shadowball').removeClass("monster-attack").hide();
+    }, 1000);
   },
 
   // ------ Timer Set Up -------
