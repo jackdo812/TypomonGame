@@ -14,7 +14,11 @@ const game = {
   timeoutId: null,
   runFirstAnimation: false,
   runFinalAnimation: false,
-  chosenHero: 'leaf',
+  chosenHero: 'fire',
+  heroFire: $('#fire-standing'),
+  heroWater: $('#water-standing'),
+  heroLeaf: $('#leaf-standing'),
+  monster: $('#monster-standing'),
   loopDuration: 1,
   selectedOption: null,
   currentMode: 'easy', 
@@ -143,10 +147,22 @@ const game = {
       $('#razorleaf').removeClass("hero-attack-1").hide();
     };
   },
+
+  showHeroAtFirst: function () {
+    $('.hero-standing').hide();
+    if (game.chosenHero === 'fire') {
+      game.heroFire.show();
+    } else if (game.chosenHero === 'water') {
+      game.heroWater.show();
+    } else {
+      game.heroLeaf.show();
+    }
+  },
   
   heroFirstAttackAnimation: function () {
     if (game.chosenHero === 'fire') {
-      //Spelling animation
+      // Hide hero standing and show spelling animation
+      $('#fire-standing').FadeOut();
       $('#fire-spelling').addClass("spelling").show();
       $('#fire-ball-audio')[0].play();
       game.timeoutId = setTimeout (function () {
@@ -317,7 +333,8 @@ const game = {
       game.updateClockDisplay();
       
   },
-
+  
+  // --- Initialize the game when DOM is loaded
   init: () => {
     // fetch the (bacon) target
     game.fetchTheBacon();
@@ -338,6 +355,8 @@ const game = {
         }
       });
     });
+    // Call function to show the chosen Hero at the Battle screen when game is started
+    game.showHeroAtFirst();
   },
 
   text50: [

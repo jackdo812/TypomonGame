@@ -263,8 +263,6 @@ main {
   display: none;
 }
 
-
-
 #wave img {
   width: 20rem;
   z-index: 10;
@@ -282,18 +280,34 @@ main {
   position:absolute;
   display: none;
   right: 3rem;
-  top: 16rem;
+  top: 13rem;
 }
 
-.spelling img,
-.monster-hurt img {
+.monster-standing {
+  position:absolute;
+  right: 3rem;
+  top: 13rem;
+}
+
+.spelling img {
   width: 18rem;
   height: auto;
 }
 
-#water-spelling {
-  width: 13rem;
+.monster-hurt img,
+.monster-standing img {
+  width: 22rem;
+  height: auto;
+}
+
+#water-spelling,
+#water-standing {
   left: 3rem;
+}
+
+#water-spelling img,
+#water-standing img {
+  width: 13rem;
 }
 
 #inferno {
@@ -312,6 +326,17 @@ main {
   width: 40rem;
   height: 15rem;
 }
+
+.hero-standing {
+  position: absolute;
+  top: 17rem;
+}
+
+.hero-standing img {
+  width: 18rem;
+  height: auto;
+}
+
 
 
 /* ---------End Game Screen--------- */
