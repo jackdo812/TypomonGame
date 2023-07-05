@@ -337,6 +337,48 @@ main {
   height: auto;
 }
 
+/* HP bar */
+.hero-hp-bar p {
+  color: rgb(40, 253, 7);
+  font-size: 1rem;
+  position: absolute;
+  top: 12rem;
+  left: 3rem;
+}
 
+.hero-hp-bar span,
+.monster-hp-bar span {
+  font-size: 1.1rem;
+  color: white;
+}
+.progress-hero {
+  position: absolute;
+  top: 13.8rem;
+  left: 3rem;
+  width: 13%;
+}
+
+.progress {
+  outline: 2px solid white;
+  border-radius: 0;
+  background-color: transparent;
+}
+.progress-bar {
+  background-color: #03c253;
+}
+
+.progress-monster {
+  position: absolute;
+  width: 14%;
+  right: 8rem;
+  top: 12.8rem;
+}
+
+.monster-hp-bar p {
+  position: absolute;
+  right: 15rem;
+  top: 11rem;
+  color:rgb(40, 253, 7);
+}
 
 /* ---------End Game Screen--------- */
