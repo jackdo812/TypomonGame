@@ -14,7 +14,7 @@ const game = {
   timeoutId: null,
   runFirstAnimation: false,
   runFinalAnimation: false,
-  chosenHero: 'fire',
+  chosenHero: 'leaf',
   heroFire: $('#fire-standing'),
   heroWater: $('#water-standing'),
   heroLeaf: $('#leaf-standing'),
@@ -162,11 +162,13 @@ const game = {
   heroFirstAttackAnimation: function () {
     if (game.chosenHero === 'fire') {
       // Hide hero standing and show spelling animation
-      $('#fire-standing').FadeOut();
+      game.heroFire.hide();
       $('#fire-spelling').addClass("spelling").show();
       $('#fire-ball-audio')[0].play();
       game.timeoutId = setTimeout (function () {
-        $('#fire-spelling').removeClass("spelling").hide()},game.loopDuration * 1000);
+        $('#fire-spelling').removeClass("spelling").hide()},1000);
+      game.timeoutId = setTimeout (function () {
+        game.heroFire.fadeIn()}, 1000);
       // Fireball animation
       $('#fireball').addClass("hero-attack-1").show().one("animationend", function () {
         $('#fireball').removeClass("hero-attack-1").hide();
@@ -175,36 +177,39 @@ const game = {
       game.runFirstAnimation = true; 
       // Monster Takes Damage animation  
       game.timeoutId = setTimeout (function () {
-        game.monsterHurt()}, game.loopDuration * 900
-      );
+        game.monsterHurt()}, 900);
      
        
     } else if (game.chosenHero === 'water') {
-      //Spelling animation
+      // Hide hero standing and show spelling animation
+      game.heroWater.hide();
       $('#water-spelling').addClass("spelling").show();
       game.timeoutId = setTimeout(function () {
-        $('#water-gun-audio')[0].play()}, game.loopDuration * 500);
+        $('#water-gun-audio')[0].play()}, 500);
       game.timeoutId = setTimeout (function () {
-         $('#water-spelling').removeClass("spelling").hide()},game.loopDuration * 1000);
+         $('#water-spelling').removeClass("spelling").hide()}, 1000);
+      game.timeoutId = setTimeout (function () {
+      game.heroWater.fadeIn()}, 1000);
       // Water gun animation
       game.timeoutId = setTimeout (function () {
         $('#watergun').addClass("hero-attack-1").show().one("animationend", function () {
           $('#watergun').removeClass("hero-attack-1").hide();
           game.runFirstAnimation = true;
-        });}, game.loopDuration * 500);
+        });}, 500);
         game.runFirstAnimation = true; 
       // Monster Takes Damage animation  
       game.timeoutId = setTimeout (function () {
-        game.monsterHurt()}, game.loopDuration * 900
-      );
+        game.monsterHurt()}, 900);
 
     } else if (game.chosenHero === 'leaf') {
-      //Spelling animation
+      // Hide hero standing and show spelling animation
+      game.heroLeaf.hide();
       $('#leaf-spelling').addClass("spelling").show();
       $('#razor-leaf-audio')[0].play();
       game.timeoutId = setTimeout (function () {
-        $('#leaf-spelling').removeClass("spelling").hide()},game.loopDuration * 1000);
-        
+        $('#leaf-spelling').removeClass("spelling").hide()},1000);
+      game.timeoutId = setTimeout (function () {
+        game.heroLeaf.fadeIn()},1000);
       // Razor leaf animation
       
       game.timeoutId = setTimeout (function() {
@@ -224,66 +229,75 @@ const game = {
 
   heroFinalAttackAnimation: function () {
     if (game.chosenHero === 'fire') {
-      //Spelling animation
+      // Hide hero standing and show spelling animation
+      game.heroFire.hide();
       $('#fire-spelling').addClass("spelling").show();
       $('#fire-ball-audio')[0].play();
       game.timeoutId = setTimeout (function () {
-        $('#fire-spelling').removeClass("spelling").hide()},game.loopDuration * 1000);
+        $('#fire-spelling').removeClass("spelling").hide()}, 1000);
+      game.timeoutId = setTimeout (function () {
+        game.heroFire.fadeIn()}, 1000);
       // Inferno animation
       $('#inferno').addClass("hero-attack-2").show();
       game.timeoutId = setTimeout (function () {
         $('#inferno').removeClass("hero-attack-2").hide()
-      }, game.loopDuration * 1000);
+      }, 1000);
       game.runFinalAnimation = true; 
       // Monster Takes Damage animation  
       game.timeoutId = setTimeout (function () {
-        game.monsterHurt()}, game.loopDuration * 900
+        game.monsterHurt()}, 900
       );
       } else if (game.chosenHero === 'water') {
-        //Spelling animation
+        // Hide hero standing and show spelling animation
+        game.heroWater.hide();
         $('#water-spelling').addClass("spelling").show();
         game.timeoutId = setTimeout(function () {
-          $('#waves-audio')[0].play()}, game.loopDuration * 500);
+          $('#waves-audio')[0].play()}, 500);
         game.timeoutId = setTimeout (function () {
-           $('#water-spelling').removeClass("spelling").hide()},game.loopDuration * 1000);
+           $('#water-spelling').removeClass("spelling").hide()}, 1000);
+        game.timeoutId = setTimeout (function () {
+        game.heroWater.fadeIn()}, 1000);
         // Wave animation
         game.timeoutId = setTimeout (function () {
           $('#wave').addClass("hero-attack-1").show().one("animationend", function () {
             $('#wave').removeClass("hero-attack-1").hide();
             game.runFinalAnimation = true;
-          });}, game.loopDuration * 500);
+          });}, 500);
           game.runFinalAnimation = true; 
         // Monster Takes Damage animation  
         game.timeoutId = setTimeout (function () {
-          game.monsterHurt()}, game.loopDuration * 900
-        );
+          game.monsterHurt()}, 900);
       } else if (game.chosenHero === 'leaf') {
-        //Spelling animation
+        // Hide hero standing and show spelling animation
+        game.heroLeaf.hide();
         $('#leaf-spelling').addClass("spelling").show();
         $('#solar-beam-audio')[0].play();
         game.timeoutId = setTimeout (function () {
-          $('#leaf-spelling').removeClass("spelling").hide()},game.loopDuration * 1000);
-          
+          $('#leaf-spelling').removeClass("spelling").hide()}, 1000);
+        game.timeoutId = setTimeout (function () {
+          game.heroLeaf.fadeIn()}, 1000);
         // Solar beam animation
           $('#solarbeam').addClass("hero-attack-2").show();
           game.timeoutId = setTimeout (function () {
             $('#solarbeam').removeClass("hero-attack-2").hide();
-          }, game.loopDuration * 1800);
+          }, 1800);
           
           game.runFinalAnimation = true; 
         // Monster Takes Damage animation  
         
         game.timeoutId = setTimeout (function () {
-          game.monsterHurt()}, game.loopDuration * 900
-        );
+          game.monsterHurt()}, 900);
       };
   },
             
   monsterHurt: function () {
+    game.monster.hide();
     $('#monster-shaking').addClass("monster-hurt").show();
     game.timeoutId = setTimeout (function () {
       $('#monster-shaking').removeClass("monster-hurt").hide();
-    }, game.loopDuration * 800); 
+    }, 800); 
+    game.timeoutId = setTimeout (function () {
+      game.monster.show()}, 800); 
     $('#takehit-audio')[0].play();
   },
 
