@@ -19,6 +19,8 @@ const game = {
   heroWater: $('#water-standing'),
   heroLeaf: $('#leaf-standing'),
   monster: $('#monster-standing'),
+  hpHero: $('.hero-hp'),
+  hpMonster: $('.monster-hp'),
   loopDuration: 1,
   selectedOption: null,
   currentMode: 'easy', 
@@ -139,8 +141,14 @@ const game = {
     game.percentageCompletion = Math.floor(game.completedWordsCount/game.totalWords * 100);
     if (game.percentageCompletion >= 25 && game.runFinalAnimation === false) {
       game.heroFinalAttackAnimation();
+      //update monster HP bar after the attack
+      game.timeoutId = setTimeout (function () {
+        game.hpMonster.css('width','0%')}, 1200);
     } else if (game.percentageCompletion >=10 && game.runFirstAnimation === false) {
       game.heroFirstAttackAnimation();
+      //update monster HP bar after the attack
+      game.timeoutId = setTimeout (function () {
+        game.hpMonster.css('width','60%')}, 1200);
     } else if (!game.runFirstAnimation && !game.runSecondAnimation) {
       $('#fireball').removeClass("hero-attack-1").hide();
       $('#watergun').removeClass("hero-attack-1").hide();
@@ -152,11 +160,14 @@ const game = {
     $('.hero-standing').hide();
     if (game.chosenHero === 'fire') {
       game.heroFire.show();
+      $('.hero-name-display').text('Fire');
     } else if (game.chosenHero === 'water') {
       game.heroWater.show();
+      $('.hero-name-display').text('Water');
     } else {
       game.heroLeaf.show();
-    }
+      $('.hero-name-display').text('Leaf');
+    };
   },
   
   heroFirstAttackAnimation: function () {
