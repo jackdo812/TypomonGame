@@ -55,10 +55,12 @@ const game = {
   },
 
   toggleIsRunning: function () {
+    console.log('toggle isRunning successfully');
     game.isRunning = !game.isRunning;
   },
 
   toggleWasRunning: function () {
+    console.log('toggle wasRunning successfully');
     game.wasRunning = !game.wasRunning;
   },
 
@@ -509,6 +511,7 @@ const game = {
     game.displayRound();
     game.monster.show();
     $('.hp-bar').show();
+    $('.progress-bar').css('width','100%');
   },
 
   resetSplashScreen: function (){
@@ -531,6 +534,7 @@ const game = {
   },
 
   pauseGameScreen: function () {
+    console.log('pause game successfully');
     $('.hero-standing').hide();
     $('.monster-standing').hide();
     $('.hp-bar').hide();
@@ -544,6 +548,7 @@ const game = {
   },
 
   resumeGameScreen: function () {
+    console.log('resume game successfully');
     game.showHeroAtFirst();
     $('.monster-standing').show();
     $('.hp-bar').show();
@@ -555,6 +560,7 @@ const game = {
     $('#target').show();
     this.toggleIsRunning();
     //delay 1s when resume to avoid the bug (skip 1s)
+    clearTimeout(game.timeoutId);
     game.timeoutId = setTimeout(function() {
      game.startTimer()}, 1000); 
   },
@@ -596,24 +602,21 @@ const game = {
     })
 
     // Help button on Game Screen
-    $('#modal-game').on('click', function() {
+    $(document).on('show.bs.modal', '#modal-game', function() {
       if(game.isRunning && !game.wasRunning) {
         game.pauseGameScreen();
         console.log('pause game');
         game.toggleWasRunning();
         console.log('change wasRunning');
-        game.toggleIsRunning();
-        console.log('change isRunning');
       } else if (!game.isRunning && !game.wasRunning) {
         return;
       }
     });
 
-    $('#modal-game').on('hidden.bs.modal', function() {
+    $(document).on('hidden.bs.modal', '#modal-game', function() {
       if(!game.isRunning && game.wasRunning) {
         game.resumeGameScreen();
         game.toggleWasRunning();
-        game.toggleIsRunning();
       } else if (!game.isRunning && !game.wasRunning) {
         return;
       }
