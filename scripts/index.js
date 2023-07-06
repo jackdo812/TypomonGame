@@ -15,7 +15,7 @@ const game = {
   timeoutId: null,
   runFirstAnimation: false,
   runFinalAnimation: false,
-  chosenHero: 'fire',
+  chosenHero: '',
   heroFire: $('#fire-standing'),
   heroWater: $('#water-standing'),
   heroLeaf: $('#leaf-standing'),
@@ -29,11 +29,30 @@ const game = {
   selectedOption: null,
   currentMode: 'easy', 
   currentRound: '1', 
+  currentScreen: 'splash-scr',
   numberOfParagraph: 2,
   totalTime: 180,
   timeRemaining: 180,
   minutes: $('#mins'),
   seconds: $('#secs'),
+  switchScreen: function(newScreen) {
+    $('.screen').hide();
+    $(`#${newScreen}`).fadeIn(350);
+    this.currentScreen = newScreen;
+    this.isRunning = false;
+    this.wasRunning = false;
+    
+    // if (newScreen === 'game-scr') {
+    //     $('.btn-quit-0').show();
+    //     $('.btn-help').show();
+    // } else if (newScreen === 'end-game-scr'){
+    //     $('.btn-quit-0').hide();
+    //     $('.btn-help').hide();
+    // } else {
+    //     $('.btn-quit-0').hide();
+    //     $('.btn-help').show();
+    // };
+  },
   fetchTheBacon: () => {
     let paragraph = '';
     // Set the conditions to generate the PARAGRAPH & TIMER based on the mode and round
@@ -448,14 +467,41 @@ const game = {
       
   },
   
-  // --- Initialize the game when DOM is loaded
-  init: () => {
+  startGame: function () {
+    if ( $('#inputname').val().length > 0 && $('[name="difficulty"]:checked').val() && $('[name="hero"]:checked').val()) {
+      $('.btn-start').prop('disabled', false);
+    } else {
+      $('.btn-start').prop('disabled', true);
+    }
+
+    $('.btn-start').on('click', function () {
+      game.switchScreen('game-scr');
+      game.setupGameScreen();
+      game.chosenHero = $('[name="hero"]:checked').val();
+      game.currentMode = $('[name="difficulty"]:checked').val();
+      game.playerName = $('#inputname').val();
+    });
+  },
+
+    // --- Initialize the game when DOM is loaded
+    setupGameScreen: () => {
     // fetch the (bacon) target
     game.fetchTheBacon();
     $(window).on("keyup", game.handleKeyup);
 
-    // stlying mode buttons
-    $('[name="difficulty"]').on('change', function() {
+    // Call function to show the chosen Hero at the Battle screen when game is started
+    game.showHeroAtFirst();
+    game.displayMode();
+    game.displayPlayerName();
+    game.displayRound();
+  },
+
+    init: () => {
+      // Select to start the game
+      game.startGame();
+      $('#inputname, [name="difficulty"], [name="hero"]').on('change', game.startGame);
+       // stlying mode buttons
+      $('[name="difficulty"]').on('change', function() {
       game.selectedOption = $(this).val();
       console.log("Selected difficulty: " + game.selectedOption);
     
@@ -469,12 +515,7 @@ const game = {
         }
       });
     });
-    // Call function to show the chosen Hero at the Battle screen when game is started
-    game.showHeroAtFirst();
-    game.displayMode();
-    game.displayPlayerName();
-    game.displayRound();
-  },
+    },
 
   text50: [
     "Armed with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown. Perilous mountains and haunted forests stood in their path, but they pressed on, fueled by courage and the call of destiny. They faced fearsome beasts and conquered daunting trials, emerging as a legend whose tale would endure.",
