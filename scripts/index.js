@@ -35,17 +35,25 @@ const game = {
   seconds: $('#secs'),
   fetchTheBacon: () => {
     let paragraph = '';
-    // Set the conditions to generate the paragraph based on the mode and round
+    // Set the conditions to generate the PARAGRAPH & TIMER based on the mode and round
     if (game.currentMode === 'easy' && game.currentRound === '1') {
       paragraph = game.text50[Math.floor(Math.random() * game.numberOfParagraph)];
     } else if ((game.currentMode === 'easy' && game.currentRound === '2') || (game.currentMode === 'normal' && game.currentRound === '1')){
       paragraph = game.text70[Math.floor(Math.random() * game.numberOfParagraph)];
+      game.totalTime = 165;
+      game.timeRemaining = 165;
     } else if ((game.currentMode === 'easy' && game.currentRound === '3') || (game.currentMode === 'normal' && game.currentRound === '2') || (game.currentMode === 'hard' && game.currentRound === '1')) {
       paragraph = game.text100[Math.floor(Math.random() * game.numberOfParagraph)];
+      game.totalTime = 150;
+      game.timeRemaining = 150;
     } else if ((game.currentMode === 'normal' && game.currentRound === '3') || (game.currentMode === 'hard' && game.currentRound === '2')){
       paragraph = game.text120[Math.floor(Math.random() * game.numberOfParagraph)];
+      game.totalTime = 135;
+      game.timeRemaining = 135;
     } else if (game.currentMode === 'hard' && game.currentRound === '3') {
       paragraph = game.text150[Math.floor(Math.random() * game.numberOfParagraph)];
+      game.totalTime = 120;
+      game.timeRemaining = 120;
     }
     if (paragraph && paragraph.length > 0) {
       $("#target").html("");
@@ -69,7 +77,19 @@ const game = {
     };
     
     },
+  displayMode: function () {
+    let modeDisplay = $('.mode-display');
+    if (this.currentMode === 'easy') {
+      modeDisplay.text(game.currentMode);
+    } else if (this.currentMode === 'normal') {
+      modeDisplay.text(game.currentMode);
+    } else {
+      modeDisplay.text(game.currentMode);
+    }
+  },
+
   
+
   handleKeyup: function (event) {
     console.log("key up", event, event.key);
     // these lines of codes help to add cursor position with styles and remove these styles when the letters were typed.
@@ -431,6 +451,7 @@ const game = {
     });
     // Call function to show the chosen Hero at the Battle screen when game is started
     game.showHeroAtFirst();
+    game.displayMode();
   },
 
   text50: [
