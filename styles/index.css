@@ -327,12 +327,14 @@ main {
 }
 
 #water-spelling,
-#water-standing {
+#water-standing,
+#water-shaking {
   left: 3rem;
 }
 
 #water-spelling img,
-#water-standing img {
+#water-standing img,
+#water-shaking img {
   width: 13rem;
 }
 
@@ -353,12 +355,18 @@ main {
   height: 15rem;
 }
 
-.hero-standing {
+.hero-standing,
+.hero-hurt {
   position: absolute;
   top: 17rem;
 }
 
-.hero-standing img {
+.hero-hurt {
+  display: none;
+}
+
+.hero-standing img,
+.hero-hurt img {
   width: 18rem;
   height: auto;
 }

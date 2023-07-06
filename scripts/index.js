@@ -14,10 +14,13 @@ const game = {
   timeoutId: null,
   runFirstAnimation: false,
   runFinalAnimation: false,
-  chosenHero: 'water',
+  chosenHero: 'fire',
   heroFire: $('#fire-standing'),
   heroWater: $('#water-standing'),
   heroLeaf: $('#leaf-standing'),
+  fireHurt: $('#fire-shaking'),
+  waterHurt: $('#water-shaking'),
+  leafHurt: $('#leaf-shaking'),
   monster: $('#monster-standing'),
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
@@ -300,6 +303,37 @@ const game = {
           game.monsterHurt()}, 900);
       };
   },
+
+  heroHurt: function (){
+    if(game.chosenHero === 'fire') {
+      game.fireHurt.addClass("hero-hurt").show();
+      game.heroFire.hide();
+      game.timeoutId = setTimeout (function () {
+        game.fireHurt.removeClass("hero-hurt").hide();
+      }, 1000); 
+      game.timeoutId = setTimeout (function () {
+        game.heroFire.show()}, 1000); 
+      $('#takehit-audio')[0].play();
+    } else if (game.chosenHero === 'water') {
+      game.waterHurt.addClass("hero-hurt").show();
+      game.heroWater.hide();
+      game.timeoutId = setTimeout (function () {
+        game.waterHurt.removeClass("hero-hurt").hide();
+      }, 1000); 
+      game.timeoutId = setTimeout (function () {
+        game.heroWater.show()}, 1000); 
+      $('#takehit-audio')[0].play();
+    } else {
+      game.leafHurt.addClass("hero-hurt").show();
+      game.heroLeaf.hide();
+      game.timeoutId = setTimeout (function () {
+        game.leafHurt.removeClass("hero-hurt").hide();
+      }, 1000); 
+      game.timeoutId = setTimeout (function () {
+        game.heroLeaf.show()}, 1000); 
+      $('#takehit-audio')[0].play();
+    };
+  },
             
   monsterHurt: function () {
     game.monster.hide();
@@ -313,11 +347,18 @@ const game = {
   },
 
   monsterAttack: function (){
+    //monster launch attack
     $('#shadowball-audio')[0].play();
     $('#shadowball').addClass("monster-attack").show();
     game.timeoutId = setTimeout (function () {
       $('#shadowball').removeClass("monster-attack").hide();
     }, 1000);
+    // Hero shaking due to damage
+    game.timeoutId = setTimeout (function () {
+      game.heroHurt()}, 1100);
+    // update hero HP bar to 0
+    game.timeoutId = setTimeout (function () {
+      game.hpHero.css('width','0%')}, 1200);
   },
 
   // ------ Timer Set Up -------
