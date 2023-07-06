@@ -147,6 +147,8 @@ body {
   justify-content: space-around;
 }
 /* ---------Game Screen--------- */
+
+/* ---- Header ---- */
 .header-1 {
   display: flex;
   justify-content: space-between;
@@ -183,6 +185,12 @@ body {
   padding: 1rem 1.5rem;
   font-size:1.1rem;
 }
+
+.star {
+  width: 2rem;
+}
+
+/* ----End Header ---- */
 
 /* font-size for the text in the paragraph */
 span {

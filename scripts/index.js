@@ -93,6 +93,23 @@ const game = {
     $('.player-name-display').text(game.playerName);
   },
 
+  displayRound: function () {
+    let roundDisplay = $('.round-display');
+    if (game.currentRound === '1') {
+      roundDisplay.html(
+        '<img class="star" src="images/star.png" alt="star">'
+      );
+    } else if (game.currentRound === '2') {
+      roundDisplay.html(
+        '<img class="star" src="images/star.png" alt="star"><img class="star" src="images/star.png" alt="star">'
+      );
+    } else {
+      roundDisplay.html(
+        '<img class="star" src="images/star.png" alt="star"><img class="star" src="images/star.png" alt="star"><img class="star" src="images/star.png" alt="star">'
+      );
+    };
+  },
+
   handleKeyup: function (event) {
     console.log("key up", event, event.key);
     // these lines of codes help to add cursor position with styles and remove these styles when the letters were typed.
@@ -456,6 +473,7 @@ const game = {
     game.showHeroAtFirst();
     game.displayMode();
     game.displayPlayerName();
+    game.displayRound();
   },
 
   text50: [
