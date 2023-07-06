@@ -130,32 +130,33 @@ const game = {
   },
 
   handleKeyup: function (event) {
-    console.log("key up", event, event.key);
-    // these lines of codes help to add cursor position with styles and remove these styles when the letters were typed.
-    const cursorPosition = game.userText.length +1;
-    const pastCursorPosition = game.userText.length;
-
-    if (/^[a-z ,.-]$/i.test(event.key)) {
-    $("#target > span").eq(cursorPosition).addClass("cursorPosition");
-    $("#target > span").eq(cursorPosition).addClass("cursorPosition-bkg");
-    $("#target > span").eq(pastCursorPosition).removeClass("cursorPosition");
-    $("#target > span").eq(pastCursorPosition).removeClass("cursorPosition-bkg");
-    } else {
-      return;
-    };
-
-    // Checking key valid or invalid then call functions
-    const regex = /^[a-z ,.-]$/i;
-    if (regex.test(event.key)) {
-      // console.log("valid key");
-      game.checkLetterMatch(event.key);
-      game.checkWordCompletion(event.key);
-    } else {
-      // console.log("invalid key");
-    };
-
-    
+    if (game.isRunning) {
+      console.log("key up", event, event.key);
+      // these lines of codes help to add cursor position with styles and remove these styles when the letters were typed.
+      const cursorPosition = game.userText.length +1;
+      const pastCursorPosition = game.userText.length;
+  
+      if (/^[a-z ,.-]$/i.test(event.key)) {
+      $("#target > span").eq(cursorPosition).addClass("cursorPosition");
+      $("#target > span").eq(cursorPosition).addClass("cursorPosition-bkg");
+      $("#target > span").eq(pastCursorPosition).removeClass("cursorPosition");
+      $("#target > span").eq(pastCursorPosition).removeClass("cursorPosition-bkg");
+      } else {
+        return;
+      };
+  
+      // Checking key valid or invalid then call functions
+      const regex = /^[a-z ,.-]$/i;
+      if (regex.test(event.key)) {
+        // console.log("valid key");
+        game.checkLetterMatch(event.key);
+        game.checkWordCompletion(event.key);
+      } else {
+        // console.log("invalid key");
+      };
+    } return; 
   },
+
   checkLetterMatch: (letter) => {
     console.log(letter);
 
@@ -496,26 +497,48 @@ const game = {
     game.displayRound();
   },
 
-    init: () => {
-      // Select to start the game
-      game.startGame();
-      $('#inputname, [name="difficulty"], [name="hero"]').on('change', game.startGame);
-       // stlying mode buttons
-      $('[name="difficulty"]').on('change', function() {
-      game.selectedOption = $(this).val();
-      console.log("Selected difficulty: " + game.selectedOption);
-    
-      $('[name="difficulty"]').each(function() {
-        if ($(this).val() === 'hard') {
-          $(this).next('label').css('background-color', game.selectedOption === 'hard' ? 'red' : '');
-        } else if ($(this).val() === 'normal') {
-          $(this).next('label').css('background-color', game.selectedOption === 'normal' ? 'orange' : '');
-        } else {
-          $(this).next('label').css('background-color', '');
-        }
+  resetSplashScreen: function (){
+    $('#inputname').val('');
+    $('[name="hero"]').prop('checked', false);
+    $('[name="difficulty"]').prop('checked', false);
+
+    // Remove background colors for all difficulty labels
+    $('[name="difficulty"]').next('label').css('background-color', '');
+  },
+
+  init: () => {
+    // Select to start the game
+    game.startGame();
+    $('#inputname, [name="difficulty"], [name="hero"]').on('change', game.startGame);
+      // stlying mode buttons
+    $('[name="difficulty"]').on('change', function() {
+    game.selectedOption = $(this).val();
+    console.log("Selected difficulty: " + game.selectedOption);
+  
+    $('[name="difficulty"]').each(function() {
+      if ($(this).val() === 'hard') {
+        $(this).next('label').css('background-color', game.selectedOption === 'hard' ? 'red' : '');
+      } else if ($(this).val() === 'normal') {
+        $(this).next('label').css('background-color', game.selectedOption === 'normal' ? 'orange' : '');
+      } else {
+        $(this).next('label').css('background-color', '');
+      }
       });
     });
-    },
+
+    // Quit button on Game Screen
+    $('.btn-end-game').on('click', function() {
+      game.switchScreen('end-game-scr');
+    });
+
+    // Back to Menu button on End-game Screen
+    $('.btn-quit-1').on('click', function() {
+      game.switchScreen('splash-scr');
+      game.resetSplashScreen();
+    });
+
+
+  },
 
   text50: [
     "Armed with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown. Perilous mountains and haunted forests stood in their path, but they pressed on, fueled by courage and the call of destiny. They faced fearsome beasts and conquered daunting trials, emerging as a legend whose tale would endure.",
