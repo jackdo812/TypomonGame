@@ -42,16 +42,6 @@ const game = {
     this.isRunning = false;
     this.wasRunning = false;
     
-    // if (newScreen === 'game-scr') {
-    //     $('.btn-quit-0').show();
-    //     $('.btn-help').show();
-    // } else if (newScreen === 'end-game-scr'){
-    //     $('.btn-quit-0').hide();
-    //     $('.btn-help').hide();
-    // } else {
-    //     $('.btn-quit-0').hide();
-    //     $('.btn-help').show();
-    // };
   },
   fetchTheBacon: () => {
     let paragraph = '';

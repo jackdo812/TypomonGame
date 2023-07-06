@@ -148,6 +148,22 @@ body {
 }
 /* ---------Game Screen--------- */
 
+/* Ready to Type Button */
+
+.ready-button {
+  position: absolute;
+  text-align: center;
+  top: 15rem;
+  left: 0;
+  right: 0;
+}
+
+.btn-ready {
+  font-size: 4rem;
+  padding: 1rem 2rem;
+  border: 5px solid white;
+}
+
 /* ---- Header ---- */
 .header-1 {
   display: flex;
