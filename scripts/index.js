@@ -1,6 +1,7 @@
 "use strict";
 
 const game = {
+  playerName: '',
   isRunning: false,
   wasRunning: false,
   targetWords: [],
@@ -88,7 +89,9 @@ const game = {
     }
   },
 
-  
+  displayPlayerName: function () {
+    $('.player-name-display').text(game.playerName);
+  },
 
   handleKeyup: function (event) {
     console.log("key up", event, event.key);
@@ -452,6 +455,7 @@ const game = {
     // Call function to show the chosen Hero at the Battle screen when game is started
     game.showHeroAtFirst();
     game.displayMode();
+    game.displayPlayerName();
   },
 
   text50: [
