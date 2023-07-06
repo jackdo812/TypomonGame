@@ -42,12 +42,33 @@ const game = {
     this.isRunning = false;
     this.wasRunning = false;
     
+    if(this.currentScreen === 'game-scr') {
+      $('.btn-ready').show();
+      game.resetGameScreen();
+      game.resetTimer();
+    } else if (this.currentScreen === 'splash-scr') {
+      game.resetSplashScreen();
+    } else if (this.currentScreen === 'end-game-scr') {
+      // need code here 
+    };
+
   },
+
+  toggleIsRunning: function () {
+    game.isRunning = !game.isRunning;
+  },
+
+  toggleWasRunning: function () {
+    game.wasRunning = !game.wasRunning;
+  },
+
   fetchTheBacon: () => {
     let paragraph = '';
     // Set the conditions to generate the PARAGRAPH & TIMER based on the mode and round
     if (game.currentMode === 'easy' && game.currentRound === '1') {
       paragraph = game.text50[Math.floor(Math.random() * game.numberOfParagraph)];
+      game.totalTime = 180;
+      game.timeRemaining = 180;
     } else if ((game.currentMode === 'easy' && game.currentRound === '2') || (game.currentMode === 'normal' && game.currentRound === '1')){
       paragraph = game.text70[Math.floor(Math.random() * game.numberOfParagraph)];
       game.totalTime = 165;
@@ -412,9 +433,7 @@ const game = {
   },
 
   // ------ Timer Set Up -------
-  toggleBtn: function () {
-    game.isRunning = !game.isRunning;
-  },
+  
   updateClockDisplay: function() {
     let newMins = Math.floor(game.timeRemaining / 60);
     let newSeconds = game.timeRemaining % 60;
@@ -434,25 +453,23 @@ const game = {
             game.timeoutId = setTimeout(game.countdownLoop,game.loopDuration * 1000);
             console.log(game.timeREmaining);
         } else if (game.timeRemaining <= 0) {
-            // clearTimeout(game.timeoutId);
-            window.setTimeout(game.resetTimer,3000);
+            // losing game function here.
         }
     };
   },  
     // start the timer loop and pause it.
   startTimer: function() {
-    if (!game.isRunning) {
-        game.toggleBtn();
+    if (game.isRunning) {
         game.timeoutId = setTimeout(game.countdownLoop, game.loopDuration);
-    } else if (game.isRunning) {
-        game.toggleBtn();
+    } else if (!game.isRunning) {
         clearTimeout(game.timeoutId); // this line of code helps to clear the time loop when we pause.
     };
   },
 
   resetTimer: function() {
       // initialize the clock back to total time (90s)
-      game.timeRemaining = game.totalTime;
+      game.timeRemaining = 0;
+      game.totalTime = 0;
       // set the clock back to 90s and the progress bar to full width
       game.updateClockDisplay();
       
@@ -467,15 +484,20 @@ const game = {
 
     $('.btn-start').on('click', function () {
       game.switchScreen('game-scr');
-      game.setupGameScreen();
       game.chosenHero = $('[name="hero"]:checked').val();
       game.currentMode = $('[name="difficulty"]:checked').val();
       game.playerName = $('#inputname').val();
     });
   },
 
+  readyToType: function () {
+    game.setupGameScreen();
+    game.toggleIsRunning();
+    game.startTimer();
+  },
+
     // --- Initialize the game when DOM is loaded
-    setupGameScreen: () => {
+  setupGameScreen: () => {
     // fetch the (bacon) target
     game.fetchTheBacon();
     $(window).on("keyup", game.handleKeyup);
@@ -485,6 +507,8 @@ const game = {
     game.displayMode();
     game.displayPlayerName();
     game.displayRound();
+    game.monster.show();
+    $('.hp-bar').show();
   },
 
   resetSplashScreen: function (){
@@ -494,6 +518,45 @@ const game = {
 
     // Remove background colors for all difficulty labels
     $('[name="difficulty"]').next('label').css('background-color', '');
+  },
+
+  resetGameScreen: function () {
+    $('.hero-standing').hide();
+    $('.monster-standing').hide();
+    $('.hp-bar').hide();
+    $('#target').html("");
+    $('.player-name-display').text("");
+    $('.mode-display').text("");
+    $('.round-display').text("");
+  },
+
+  pauseGameScreen: function () {
+    $('.hero-standing').hide();
+    $('.monster-standing').hide();
+    $('.hp-bar').hide();
+    $('.player-name-display').text("").hide();
+    $('.mode-display').text("").hide();
+    $('.round-display').text("").hide();
+    $('#target').hide();
+    game.minutes.hide();
+    game.seconds.hide();
+    this.toggleIsRunning();
+  },
+
+  resumeGameScreen: function () {
+    game.showHeroAtFirst();
+    $('.monster-standing').show();
+    $('.hp-bar').show();
+    $('.player-name-display').text("").show();
+    $('.mode-display').text("").show();
+    $('.round-display').text("").show();
+    game.minutes.show();
+    game.seconds.show();
+    $('#target').show();
+    this.toggleIsRunning();
+    //delay 1s when resume to avoid the bug (skip 1s)
+    game.timeoutId = setTimeout(function() {
+     game.startTimer()}, 1000); 
   },
 
   init: () => {
@@ -524,9 +587,38 @@ const game = {
     // Back to Menu button on End-game Screen
     $('.btn-quit-1').on('click', function() {
       game.switchScreen('splash-scr');
-      game.resetSplashScreen();
     });
 
+    // Ready to Type button on Game Screen
+    $('.btn-ready').on('click', function () {
+      game.readyToType();
+      $('.btn-ready').hide();
+    })
+
+    // Help button on Game Screen
+    $('#modal-game').on('click', function() {
+      if(game.isRunning && !game.wasRunning) {
+        game.pauseGameScreen();
+        console.log('pause game');
+        game.toggleWasRunning();
+        console.log('change wasRunning');
+        game.toggleIsRunning();
+        console.log('change isRunning');
+      } else if (!game.isRunning && !game.wasRunning) {
+        return;
+      }
+    });
+
+    $('#modal-game').on('hidden.bs.modal', function() {
+      if(!game.isRunning && game.wasRunning) {
+        game.resumeGameScreen();
+        game.toggleWasRunning();
+        game.toggleIsRunning();
+      } else if (!game.isRunning && !game.wasRunning) {
+        return;
+      }
+      
+    });
 
   },
 
