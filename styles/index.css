@@ -1,16 +1,16 @@
 /* Toggle Screen */
 
-/* #splash-scr {
+#splash-scr {
   display: none;
-} */
+}
 
 /* #game-scr {
   display: block !important;
 } */
 
-/* #end-game-scr {
+#end-game-scr {
   display: block !important;
-} */
+}
 
 /* ---------General--------- */
 body {
@@ -440,3 +440,35 @@ main {
 }
 
 /* ---------End Game Screen--------- */
+
+/* Win - Lose - Unvailable Sign */
+#end-game-scr {
+  position: relative;
+}
+
+.hero-win,
+.hero-lose {
+  position: absolute;
+}
+
+.fire-win,
+.fire-lose {
+  width: 19rem;
+  
+}
+
+.water-win,
+.water-lose {
+  width: 13rem;
+ 
+}
+
+.leaf-win,
+.leaf-lose {
+  width: 16rem;
+  
+}
+
+#unvailable-icon {
+  width: 15rem;
+}

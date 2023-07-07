@@ -184,9 +184,28 @@
     <!-- End-game Screen -->
     <section id="end-game-scr" class="end-game-screen screen" style="display: none;">
         <h2>End Game Screen</h2>
+        <!-- Signs -->
+        <img id="unvailable-icon" src="images/unvailable-icon.png" alt="">
+        <img class="hero-win fire-win" src="gifs/Fire_win.gif" alt="">
+        <img class="hero-win water-win" src="gifs/water_win.gif" alt="">
+        <img class="hero-win leaf-win" src="gifs/leaf_win.gif" alt="">
+        <img class="hero-lose fire-lose" src="gifs/Fire_lose.gif" alt="">
+        <img class="hero-lose water-lose" src="gifs/water_lost.gif" alt="">
+        <img class="hero-lose leaf-lose" src="gifs/leaf_lost.gif" alt="">
+        <!-- Messages -->
         <p>Congratulations!!! You did it... Thanks so much for saving us...You are the truly Hero. If you want to challenge yourself again, you can click "Play Again" button. It will create a spell to revive the monster. But be careful, that monster is not a joke.</p>
+        <!-- Summary Box -->
+        <div id="summary-box">
+          <p>Player: <span class="player-name-display"></span></p>
+          <p>Mode: <span class="mode-display"></span></p>
+          <p>Round: <span class="round-display"></span></p>
+          <p>Word Per Minute: <span class="wpm"></span></p>
+          <p>Incorrect Words: <span class="percentage-incorrect-word"></span></p>
+        </div>
+        <!-- Buttons -->
         <button type="button" class="btn btn-danger btn-quit-1">Back to Menu</button>
         <button type="button" class="btn btn-success btn-play-again">Play Again</button>
+        <button type="button" class="btn btn-warning btn-next-round">Next Round</button>
     </section>
     <!-- Modals -->
     <section id="modal-section">
