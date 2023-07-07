@@ -559,6 +559,11 @@ const game = {
     $('.player-name-display').text("");
     $('.mode-display').text("");
     $('.round-display').text("");
+    game.numberCorrectWords = 0;
+    game.numberIncorrectWords = 0;
+    game.completedWordsCount =0;
+    game.percentageCompletion = 0;
+    game.targetText = [];
   },
 
   pauseGameScreen: function () {
@@ -596,20 +601,7 @@ const game = {
   resetEndGameScreen: function (){
     this.gameResult = null;
   },
-
-  // Win Situation
-  winGame: function () {
-    if (
-      game.percentageCompletion === 100 &&
-      game.timeRemaining >= 0 &&
-      ((game.numberIncorrectWords / game.totalWords * 100) <= game.incorrectWordsBreakPoint)
-    ) {
-      game.gameResult = 'won';
-      game.timeoutId = setTimeout (function() {
-        game.switchScreen('end-game-scr');}, 2000); 
-    };
-  },
-
+  
   init: () => {
     // Select to start the game
     game.startGame();
@@ -683,6 +675,32 @@ const game = {
       
     });
 
+    $(window).on('load', function() {
+      var intervalId;
+      function winGame() {
+        if (
+          game.percentageCompletion === 100 &&
+          game.timeRemaining >= 0 &&
+          ((game.numberIncorrectWords / game.totalWords * 100) <= game.incorrectWordsBreakPoint)
+        ) {
+          game.gameResult = 'won';
+          game.timeoutId = setTimeout(function() {
+            game.switchScreen('end-game-scr');
+          }, 2000);
+          clearInterval(intervalId); // Clear the interval
+        }
+      }
+    
+      // Call the winGame function continuously
+      intervalId = setInterval(winGame, 1000); // Adjust the interval duration as needed (e.g., every second)
+    
+      // Rest of your code...
+    
+      // Other event bindings and function calls
+      // $('#inputname, [name="difficulty"], [name="hero"]').on('change', game.startGame);
+      // game.startGame();
+    });
+    
   },
     
 
@@ -711,5 +729,5 @@ const game = {
 };
 
 // Calling wingame function when all conditions met
-game.winGame();
+// game.winGame();
 $(game.init);
