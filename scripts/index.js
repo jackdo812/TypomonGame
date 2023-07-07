@@ -40,6 +40,7 @@ const game = {
   timeRemaining: 180,
   minutes: $('#mins'),
   seconds: $('#secs'),
+  wordsPerMins: null,
   switchScreen: function(newScreen) {
     $('.screen').hide();
     $(`#${newScreen}`).fadeIn(350);
@@ -59,7 +60,7 @@ const game = {
       game.resetEndGameScreen();
       game.quitBeforePlay = null;
     } else if (this.currentScreen === 'end-game-scr') {
-      // need code here 
+      game.checkWordsPerMins();
     };
 
   },
@@ -154,7 +155,7 @@ const game = {
 
   handleKeyup: function (event) {
     if (game.isRunning) {
-      console.log("key up", event, event.key);
+      // console.log("key up", event, event.key);
       // these lines of codes help to add cursor position with styles and remove these styles when the letters were typed.
       const cursorPosition = game.userText.length +1;
       const pastCursorPosition = game.userText.length;
@@ -253,6 +254,13 @@ const game = {
       $('#watergun').removeClass("hero-attack-1").hide();
       $('#razorleaf').removeClass("hero-attack-1").hide();
     };
+  },
+
+  checkWordsPerMins: function () {
+    let timeCompletion = (game.totalTime - game.timeRemaining) / 60; // how long (in minute) user complete his/her typing part
+    game.wordsPerMins = Math.round(game.completedWordsCount / timeCompletion);
+    console.log(this.wordsPerMins);
+    $('.wpm').text(game.wordsPerMins);
   },
 
   resetHandleKeyup: function() {
