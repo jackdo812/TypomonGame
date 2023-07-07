@@ -4,6 +4,8 @@ const game = {
   playerName: '',
   isRunning: false,
   wasRunning: false,
+  gameResult: null,
+  quitBeforePlay: null,
   targetWords: [],
   targetText: [],
   userText: [],
@@ -47,8 +49,12 @@ const game = {
       game.resetGameScreen();
       game.resetTimer();
       game.resetHandleKeyup();
+      game.resetEndGameScreen();
+      game.quitBeforePlay = null;
     } else if (this.currentScreen === 'splash-scr') {
       game.resetSplashScreen();
+      game.resetEndGameScreen();
+      game.quitBeforePlay = null;
     } else if (this.currentScreen === 'end-game-scr') {
       // need code here 
     };
@@ -575,6 +581,10 @@ const game = {
      game.startTimer()}, 1000); 
   },
 
+  resetEndGameScreen: function (){
+    this.gameResult = null;
+  },
+
   init: () => {
     // Select to start the game
     game.startGame();
@@ -597,7 +607,21 @@ const game = {
 
     // Quit button on Game Screen
     $('.btn-end-game').on('click', function() {
+      if (!game.isRunning) {
+        game.quitBeforePlay = true; 
+      } else {
+        game.quitBeforePlay = false; 
+      }
+
       game.switchScreen('end-game-scr');
+      
+      if (game.quitBeforePlay) {
+        game.gameResult = 'unavailable';
+        
+      } else {
+        game.gameResult = 'lost';
+        
+      }; 
     });
 
     // Back to Menu button on End-game Screen
