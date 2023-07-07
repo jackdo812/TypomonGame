@@ -12,6 +12,7 @@ const game = {
   totalWords: null,
   numberCorrectWords: 0,
   numberIncorrectWords: 0,
+  incorrectWordsBreakPoint: 25,
   completedWordsCount:0,
   percentageCompletion: 0,
   timeoutId: null,
@@ -27,6 +28,8 @@ const game = {
   monster: $('#monster-standing'),
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
+  percentageToLaunchFirstAttack: 45,
+  percentageToLaunchFinalAttack: 100,
   loopDuration: 1,
   selectedOption: null,
   currentMode: 'easy', 
@@ -217,17 +220,26 @@ const game = {
         currentWord += userLetter;
       }
     }
+     // Check if there is any remaining word at the end (the above codes count completedword by the space but the last word won't end with a space so we need these code lines)
+    if (currentWord.trim() !== "") {
+    completedWordsCount++;
+
+    if (currentWord === game.targetWords[currentIndex]) {
+      numberCorrectWords++;
+    }
+  }
   
     game.numberCorrectWords = numberCorrectWords;
     game.numberIncorrectWords = completedWordsCount - game.numberCorrectWords;
     game.completedWordsCount = completedWordsCount;
     game.percentageCompletion = Math.floor(game.completedWordsCount/game.totalWords * 100);
-    if (game.percentageCompletion >= 25 && game.runFinalAnimation === false) {
+
+    if (game.percentageCompletion === game.percentageToLaunchFinalAttack && game.runFinalAnimation === false) {
       game.heroFinalAttackAnimation();
       //update monster HP bar after the attack
       game.timeoutId = setTimeout (function () {
         game.hpMonster.css('width','0%')}, 1200);
-    } else if (game.percentageCompletion >=10 && game.runFirstAnimation === false) {
+    } else if (game.percentageCompletion >=game.percentageToLaunchFirstAttack && game.runFirstAnimation === false) {
       game.heroFirstAttackAnimation();
       //update monster HP bar after the attack
       game.timeoutId = setTimeout (function () {
@@ -585,11 +597,25 @@ const game = {
     this.gameResult = null;
   },
 
+  // Win Situation
+  winGame: function () {
+    if (
+      game.percentageCompletion === 100 &&
+      game.timeRemaining >= 0 &&
+      ((game.numberIncorrectWords / game.totalWords * 100) <= game.incorrectWordsBreakPoint)
+    ) {
+      game.gameResult = 'won';
+      game.timeoutId = setTimeout (function() {
+        game.switchScreen('end-game-scr');}, 2000); 
+    };
+  },
+
   init: () => {
     // Select to start the game
     game.startGame();
     $('#inputname, [name="difficulty"], [name="hero"]').on('change', game.startGame);
-      // stlying mode buttons
+   
+    // stlying mode buttons
     $('[name="difficulty"]').on('change', function() {
     game.selectedOption = $(this).val();
     console.log("Selected difficulty: " + game.selectedOption);
@@ -658,7 +684,9 @@ const game = {
     });
 
   },
+    
 
+  // Prepared paragraphs for data fetching
   text50: [
     "Armed with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown. Perilous mountains and haunted forests stood in their path, but they pressed on, fueled by courage and the call of destiny. They faced fearsome beasts and conquered daunting trials, emerging as a legend whose tale would endure.",
     "In a world yearning for salvation, a hero emerged from the shadows, driven by a burning desire to protect the innocent. With lightning-fast reflexes and a heart ablaze with righteousness, they battled dark forces that threatened to engulf the realm. Their valiant deeds etched their name in history, inspiring generations to come."
@@ -682,4 +710,6 @@ const game = {
   ],
 };
 
+// Calling wingame function when all conditions met
+game.winGame();
 $(game.init);
