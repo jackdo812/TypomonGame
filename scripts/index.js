@@ -233,6 +233,10 @@ const game = {
     game.numberIncorrectWords = completedWordsCount - game.numberCorrectWords;
     game.completedWordsCount = completedWordsCount;
     game.percentageCompletion = Math.floor(game.completedWordsCount/game.totalWords * 100);
+    if ((((game.numberIncorrectWords-1)/game.totalWords * 100)> game.incorrectWordsBreakPoint)){
+      
+      game.loseGame();
+    };
 
     if (game.percentageCompletion === game.percentageToLaunchFinalAttack && game.runFinalAnimation === false) {
       game.heroFinalAttackAnimation();
@@ -483,7 +487,9 @@ const game = {
             game.timeoutId = setTimeout(game.countdownLoop,game.loopDuration * 1000);
             console.log(game.timeREmaining);
         } else if (game.timeRemaining <= 0) {
-            // losing game function here.
+            if (game.percentageCompletion < 100) {
+              game.loseGame();
+            };
         }
     };
   },  
@@ -601,6 +607,14 @@ const game = {
   resetEndGameScreen: function (){
     this.gameResult = null;
   },
+
+  loseGame: function (){
+    $(window).off("keyup"); // preventing user from continuing typing which might lead to other errors
+    game.gameResult = 'lost';
+    game.monsterAttack();
+    game.timeoutId = setTimeout(function() {
+     game.switchScreen('end-game-scr');}, 2000);
+  },
   
   init: () => {
     // Select to start the game
@@ -676,7 +690,7 @@ const game = {
     });
 
     $(window).on('load', function() {
-      var intervalId;
+      var winIntervalId;
       function winGame() {
         if (
           game.percentageCompletion === 100 &&
@@ -687,20 +701,15 @@ const game = {
           game.timeoutId = setTimeout(function() {
             game.switchScreen('end-game-scr');
           }, 2000);
-          clearInterval(intervalId); // Clear the interval
-        }
-      }
-    
-      // Call the winGame function continuously
-      intervalId = setInterval(winGame, 1000); // Adjust the interval duration as needed (e.g., every second)
-    
-      // Rest of your code...
-    
-      // Other event bindings and function calls
-      // $('#inputname, [name="difficulty"], [name="hero"]').on('change', game.startGame);
-      // game.startGame();
+          clearInterval(winIntervalId); // Clear the interval
+        } 
+      };
+  
+      // Call the winGame & function continuously
+      winIntervalId = setInterval(winGame, 1000); // Adjust the interval duration as needed (e.g., every second)
+      
+      
     });
-    
   },
     
 
