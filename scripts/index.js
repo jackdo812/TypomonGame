@@ -46,6 +46,7 @@ const game = {
       $('.btn-ready').show();
       game.resetGameScreen();
       game.resetTimer();
+      game.resetHandleKeyup();
     } else if (this.currentScreen === 'splash-scr') {
       game.resetSplashScreen();
     } else if (this.currentScreen === 'end-game-scr') {
@@ -230,6 +231,15 @@ const game = {
       $('#watergun').removeClass("hero-attack-1").hide();
       $('#razorleaf').removeClass("hero-attack-1").hide();
     };
+  },
+
+  resetHandleKeyup: function() {
+    game.userText = []; // Reset the user input array
+    const firstChar = $("#target > span:eq(0)");
+    firstChar.addClass("cursorPosition");
+    firstChar.addClass("cursorPosition-bkg");
+    $("#target > span").not(":eq(0)").removeClass("cursorPosition");
+    $("#target > span").not(":eq(0)").removeClass("cursorPosition-bkg");
   },
 
   showHeroAtFirst: function () {
