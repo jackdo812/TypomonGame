@@ -12,6 +12,7 @@ const game = {
   totalWords: null,
   numberCorrectWords: 0,
   numberIncorrectWords: 0,
+  percentageIncorrectWords: 0,
   incorrectWordsBreakPoint: 25,
   completedWordsCount:0,
   percentageCompletion: 0,
@@ -36,8 +37,8 @@ const game = {
   currentRound: '1', 
   currentScreen: 'splash-scr',
   numberOfParagraph: 2,
-  totalTime: 180,
-  timeRemaining: 180,
+  totalTime: 0,
+  timeRemaining: 0,
   minutes: $('#mins'),
   seconds: $('#secs'),
   wordsPerMins: null,
@@ -59,8 +60,11 @@ const game = {
       game.resetSplashScreen();
       game.resetEndGameScreen();
       game.quitBeforePlay = null;
+      game.resetGameScreen();
+      game.resetTimer();
     } else if (this.currentScreen === 'end-game-scr') {
       game.checkWordsPerMins();
+      game.showIncorrectWords();
     };
 
   },
@@ -261,6 +265,11 @@ const game = {
     game.wordsPerMins = Math.round(game.completedWordsCount / timeCompletion);
     console.log(this.wordsPerMins);
     $('.wpm').text(game.wordsPerMins);
+  },
+
+  showIncorrectWords: function () {
+    game.percentageIncorrectWords = Math.round(game.numberIncorrectWords/game.completedWordsCount *100);
+    $('.percentage-incorrect-word').text(game.percentageIncorrectWords);
   },
 
   resetHandleKeyup: function() {
@@ -614,10 +623,12 @@ const game = {
 
   resetEndGameScreen: function (){
     this.gameResult = null;
+    game.WordsPerMins = null;
   },
 
   loseGame: function (){
     $(window).off("keyup"); // preventing user from continuing typing which might lead to other errors
+    clearTimeout(game.timeoutId);
     game.gameResult = 'lost';
     game.monsterAttack();
     game.timeoutId = setTimeout(function() {
