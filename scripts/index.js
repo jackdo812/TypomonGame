@@ -109,7 +109,7 @@ const game = {
       $("#target span:eq(0)").addClass("cursorPosition");
       $("#target span:eq(0)").addClass("cursorPosition-bkg");
     };
-    
+    $(window).off("keyup"); //unbind the keyup event to prevent multiple bindings
     },
   displayMode: function () {
     let modeDisplay = $('.mode-display');
