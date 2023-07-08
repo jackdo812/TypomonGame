@@ -263,12 +263,11 @@ const game = {
 
     if (game.percentageCompletion === game.percentageToLaunchFinalAttack && game.runFinalAnimation === false) {
       game.heroFinalAttackAnimation();
-      
       //update monster HP bar after the attack
       
       game.timeoutId5 = setTimeout (function () {
         game.hpMonster.css('width','0%')}, 1200);
-      // setTimeout(function () {game.hpMonster.css('width','0%');}, 1200);
+      
 
         
     } else if (game.percentageCompletion >=game.percentageToLaunchFirstAttack && game.runFirstAnimation === false) {
@@ -680,6 +679,7 @@ const game = {
       break;
       case 'lost':
         game.resultMessages.html('<span>You Lose!</span> So sorry...');
+        $('#summary-box').show();
         $('.btn-next-round').hide();
         if(game.chosenHero === 'fire') {
           game.fireLose.show();
@@ -722,6 +722,8 @@ const game = {
       }, 2000);
     } 
   },
+
+   
   
   init: () => {
     // Select to start the game
@@ -805,9 +807,10 @@ const game = {
         console.log('pause game');
         game.toggleWasRunning();
         console.log('change wasRunning');
-      } else if (!game.isRunning && !game.wasRunning) {
+      } else if (!game.isRunning && !game.wasRunning)  {
         return;
       }
+      
     });
 
     $(document).on('hidden.bs.modal', '#modal-game', function() {
@@ -819,6 +822,9 @@ const game = {
       }
       
     });
+
+
+
     // Win game function
     
   
