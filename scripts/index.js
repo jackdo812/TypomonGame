@@ -235,13 +235,17 @@ const game = {
       }
     }
      // Check if there is any remaining word at the end (the above codes count completedword by the space but the last word won't end with a space so we need these code lines)
-    if (currentWord.trim() !== "") {
-    completedWordsCount++;
-
-    if (currentWord === game.targetWords[currentIndex]) {
-      numberCorrectWords++;
+     if (currentWord.trim() !== "") {
+      if (currentIndex === game.targetWords.length - 1) {
+        const lastTargetWord = game.targetWords[currentIndex];
+        if (currentWord === lastTargetWord || currentWord === lastTargetWord + ".") {
+          completedWordsCount++;
+          if (currentWord === lastTargetWord + ".") {
+            numberCorrectWords++;
+          }
+        }
+      }
     }
-  }
   
     game.numberCorrectWords = numberCorrectWords;
     game.numberIncorrectWords = completedWordsCount - game.numberCorrectWords;
@@ -267,6 +271,10 @@ const game = {
       $('#watergun').removeClass("hero-attack-1").hide();
       $('#razorleaf').removeClass("hero-attack-1").hide();
     };
+
+    if (game.percentageCompletion === 100) {
+      game.winGame();
+    } return;
   },
 
   checkWordsPerMins: function () {
@@ -600,6 +608,8 @@ const game = {
     game.completedWordsCount =0;
     game.percentageCompletion = 0;
     game.targetText = [];
+    game.runFirstAnimation = false;
+    game.runFinalAnimation = false;
   },
 
   pauseGameScreen: function () {
@@ -673,7 +683,11 @@ const game = {
       break;
       case 'won':
         game.resultMessages.html('<span>You Win!</span> So sorry...');
-        $('.btn-next-round').show();
+        if(game.currentRound === '3') { // this condition prevents to show the Next Round button as round 3 is the maximum number of round in one mode.
+          $('.btn-next-round').hide();
+        } else {
+          $('.btn-next-round').show();
+        }
         if(game.chosenHero === 'fire') {
           game.fireWin.show();
         } else if (game.chosenHero === 'water') {
@@ -685,6 +699,20 @@ const game = {
       default:
         game.resultMessages.html('<span>Loading...</span> So sorry...the system gets errors to show the summary');
     }
+  },
+
+  winGame: function () {
+    if (game.timeRemaining >= 0 &&
+      ((game.numberIncorrectWords / game.totalWords * 100) <= game.incorrectWordsBreakPoint)
+    ) {
+      console.log('Done checking conditions');
+      game.gameResult = 'won';
+      console.log('Set gameResult to WON')
+      clearTimeout(this.timeoutId);
+      game.timeoutId = setTimeout(function() {
+        game.switchScreen('end-game-scr');
+      }, 2000);
+    } 
   },
   
   init: () => {
@@ -739,6 +767,23 @@ const game = {
       game.switchScreen('game-scr');
     });
 
+    // 'NextRound' button on End-game Screen - go back to gamescreen to play at the same mode BUT +1 round (next round).
+
+    $('.btn-next-round').on('click', function() {
+      game.switchScreen('game-scr');
+      const round = game.currentRound;
+      switch (round) {
+        case '1':
+          game.currentRound = '2';
+          break;
+        case '2':
+          game.currentRound = '3';
+          break;
+          default:
+            alert('Sorry...there is an error! Please go back to the Menu or try to refresh the page.');
+      };
+    });
+
     // Ready to Type button on Game Screen
     $('.btn-ready').on('click', function () {
       game.readyToType();
@@ -766,28 +811,35 @@ const game = {
       }
       
     });
-
-    $(window).on('load', function() {
-      var winIntervalId;
-      function winGame() {
-        if (
-          game.percentageCompletion === 100 &&
-          game.timeRemaining >= 0 &&
-          ((game.numberIncorrectWords / game.totalWords * 100) <= game.incorrectWordsBreakPoint)
-        ) {
-          game.gameResult = 'won';
-          game.timeoutId = setTimeout(function() {
-            game.switchScreen('end-game-scr');
-          }, 2000);
-          clearInterval(winIntervalId); // Clear the interval
-        } 
-      };
+    // Win game function
+    
   
-      // Call the winGame & function continuously
-      winIntervalId = setInterval(winGame, 1000); // Adjust the interval duration as needed (e.g., every second)
+
+    // $(window).on('load', function() {
+    //   console.log('Checking if we WIN');
+    //   var winIntervalId;
+    //   console.log('passing var');
+    //   function winGame() {
+    //     if (
+    //       game.percentageCompletion === 100 &&
+    //       game.timeRemaining >= 0 &&
+    //       ((game.numberIncorrectWords / game.totalWords * 100) <= game.incorrectWordsBreakPoint)
+    //     ) {
+    //       console.log('Done checking conditions');
+    //       game.gameResult = 'won';
+    //       console.log('Set gameResult to WON')
+    //       game.timeoutId = setTimeout(function() {
+    //         game.switchScreen('end-game-scr');
+    //       }, 2000);
+    //       clearInterval(winIntervalId); // Clear the interval
+    //     } 
+    //   };
+  
+    //   // Call the winGame & function continuously
+    //   winIntervalId = setInterval(winGame, 1000); // Adjust the interval duration as needed (e.g., every second)
       
       
-    });
+    // });
   },
     
 
@@ -815,6 +867,6 @@ const game = {
   ],
 };
 
-// Calling wingame function when all conditions met
-// game.winGame();
+
+
 $(game.init);
