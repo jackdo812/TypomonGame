@@ -18,6 +18,11 @@ const game = {
   completedWordsCount:0,
   percentageCompletion: 0,
   timeoutId: null,
+  timeoutId1: null,
+  timeoutId2: null,
+  timeoutId3: null,
+  timeoutId4: null,
+  timeoutId5: null,
   runFirstAnimation: false,
   runFinalAnimation: false,
   chosenHero: '',
@@ -258,9 +263,14 @@ const game = {
 
     if (game.percentageCompletion === game.percentageToLaunchFinalAttack && game.runFinalAnimation === false) {
       game.heroFinalAttackAnimation();
+      
       //update monster HP bar after the attack
-      game.timeoutId = setTimeout (function () {
+      
+      game.timeoutId5 = setTimeout (function () {
         game.hpMonster.css('width','0%')}, 1200);
+      // setTimeout(function () {game.hpMonster.css('width','0%');}, 1200);
+
+        
     } else if (game.percentageCompletion >=game.percentageToLaunchFirstAttack && game.runFirstAnimation === false) {
       game.heroFirstAttackAnimation();
       //update monster HP bar after the attack
@@ -378,8 +388,7 @@ const game = {
       // Monster Takes Damage animation  
       
       game.timeoutId = setTimeout (function () {
-        game.monsterHurt()}, game.loopDuration * 900
-      );
+        game.monsterHurt()}, 900);
       
     };
   },
@@ -390,18 +399,18 @@ const game = {
       game.heroFire.hide();
       $('#fire-spelling').addClass("spelling").show();
       $('#fire-ball-audio')[0].play();
-      game.timeoutId = setTimeout (function () {
+      game.timeoutId1 = setTimeout (function () {
         $('#fire-spelling').removeClass("spelling").hide()}, 1000);
-      game.timeoutId = setTimeout (function () {
+      game.timeoutId2 = setTimeout (function () {
         game.heroFire.fadeIn()}, 1000);
       // Inferno animation
       $('#inferno').addClass("hero-attack-2").show();
-      game.timeoutId = setTimeout (function () {
+      game.timeoutId3 = setTimeout (function () {
         $('#inferno').removeClass("hero-attack-2").hide()
       }, 1000);
       game.runFinalAnimation = true; 
-      // Monster Takes Damage animation  
-      game.timeoutId = setTimeout (function () {
+      // Monster Takes Damage animation 
+      game.timeoutId4 = setTimeout (function () {
         game.monsterHurt()}, 900
       );
       } else if (game.chosenHero === 'water') {
@@ -410,39 +419,38 @@ const game = {
         $('#water-spelling').addClass("spelling").show();
         game.timeoutId = setTimeout(function () {
           $('#waves-audio')[0].play()}, 500);
-        game.timeoutId = setTimeout (function () {
+        game.timeoutId1 = setTimeout (function () {
            $('#water-spelling').removeClass("spelling").hide()}, 1000);
-        game.timeoutId = setTimeout (function () {
+        game.timeoutId2 = setTimeout (function () {
         game.heroWater.fadeIn()}, 1000);
         // Wave animation
-        game.timeoutId = setTimeout (function () {
+        game.timeoutId3 = setTimeout (function () {
           $('#wave').addClass("hero-attack-1").show().one("animationend", function () {
             $('#wave').removeClass("hero-attack-1").hide();
             game.runFinalAnimation = true;
           });}, 500);
           game.runFinalAnimation = true; 
         // Monster Takes Damage animation  
-        game.timeoutId = setTimeout (function () {
+        game.timeoutId4 = setTimeout (function () {
           game.monsterHurt()}, 900);
       } else if (game.chosenHero === 'leaf') {
         // Hide hero standing and show spelling animation
         game.heroLeaf.hide();
         $('#leaf-spelling').addClass("spelling").show();
         $('#solar-beam-audio')[0].play();
-        game.timeoutId = setTimeout (function () {
+        game.timeoutId1 = setTimeout (function () {
           $('#leaf-spelling').removeClass("spelling").hide()}, 1000);
-        game.timeoutId = setTimeout (function () {
+        game.timeoutId2 = setTimeout (function () {
           game.heroLeaf.fadeIn()}, 1000);
         // Solar beam animation
           $('#solarbeam').addClass("hero-attack-2").show();
-          game.timeoutId = setTimeout (function () {
+          game.timeoutId3 = setTimeout (function () {
             $('#solarbeam').removeClass("hero-attack-2").hide();
           }, 1800);
           
           game.runFinalAnimation = true; 
         // Monster Takes Damage animation  
-        
-        game.timeoutId = setTimeout (function () {
+        game.timeoutId4 = setTimeout (function () {
           game.monsterHurt()}, 900);
       };
   },
