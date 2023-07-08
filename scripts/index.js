@@ -33,6 +33,7 @@ const game = {
   fireLose: $('.fire-lose'),
   waterLose: $('.water-lose'),
   leafLose: $('.leaf-lose'),
+  unavailableSign: $('#unvailable-icon'),
   monster: $('#monster-standing'),
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
@@ -631,7 +632,10 @@ const game = {
 
   resetEndGameScreen: function (){
     this.gameResult = null;
-    game.WordsPerMins = null;
+    game.wordsPerMins = null;
+    $('.hero-win').hide();
+    $('.hero-lose').hide();
+    game.unavailableSign.hide();
   },
 
   loseGame: function (){
@@ -648,7 +652,7 @@ const game = {
     switch (result) {
       case 'unavailable':
         game.resultMessages.html('<span>Unavailable</span> Go back and play...');
-        $('#unvailable-icon').show();
+        game.unavailableSign.show();
         $('#summary-box').hide();
         $('.btn-next-round').hide();
       break;
