@@ -446,6 +446,11 @@ main {
   position: relative;
 }
 
+.hero-win,
+.hero-lose {
+  display: none;
+}
+
 .fire-win,
 .fire-lose {
   width: 19rem;
@@ -463,4 +468,5 @@ main {
 
 #unvailable-icon {
   width: 15rem;
+  display: none;
 }

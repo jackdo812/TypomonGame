@@ -5,6 +5,7 @@ const game = {
   isRunning: false,
   wasRunning: false,
   gameResult: null,
+  resultMessages: $('#result-message'),
   quitBeforePlay: null,
   targetWords: [],
   targetText: [],
@@ -26,6 +27,12 @@ const game = {
   fireHurt: $('#fire-shaking'),
   waterHurt: $('#water-shaking'),
   leafHurt: $('#leaf-shaking'),
+  fireWin: $('.fire-win'),
+  waterWin: $('.water-win'),
+  leafWin: $('.leaf-win'),
+  fireLose: $('.fire-lose'),
+  waterLose: $('.water-lose'),
+  leafLose: $('.leaf-lose'),
   monster: $('#monster-standing'),
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
@@ -65,6 +72,7 @@ const game = {
     } else if (this.currentScreen === 'end-game-scr') {
       game.checkWordsPerMins();
       game.showIncorrectWords();
+      game.showGameResult();
     };
 
   },
@@ -634,6 +642,42 @@ const game = {
     game.timeoutId = setTimeout(function() {
      game.switchScreen('end-game-scr');}, 2000);
   },
+
+  showGameResult: function (){
+    const result = game.gameResult;
+    switch (result) {
+      case 'unavailable':
+        game.resultMessages.html('<span>Unavailable</span> Go back and play...');
+        $('#unvailable-icon').show();
+        $('#summary-box').hide();
+        $('.btn-next-round').hide();
+      break;
+      case 'lost':
+        game.resultMessages.html('<span>You Lose!</span> So sorry...');
+        $('.btn-next-round').hide();
+        if(game.chosenHero === 'fire') {
+          game.fireLose.show();
+        } else if (game.chosenHero === 'water') {
+          game.waterLose.show();
+        } else if (game.chosenHero === 'leaf') {
+          game.leafLose.show();
+        };
+      break;
+      case 'won':
+        game.resultMessages.html('<span>You Win!</span> So sorry...');
+        $('.btn-next-round').show();
+        if(game.chosenHero === 'fire') {
+          game.fireWin.show();
+        } else if (game.chosenHero === 'water') {
+          game.waterWin.show();
+        } else if (game.chosenHero === 'leaf') {
+          game.leafWin.show();
+        };  
+      break;
+      default:
+        game.resultMessages.html('<span>Loading...</span> So sorry...the system gets errors to show the summary');
+    }
+  },
   
   init: () => {
     // Select to start the game
@@ -664,7 +708,7 @@ const game = {
         game.quitBeforePlay = false; 
       }
 
-      game.switchScreen('end-game-scr');
+      // game.switchScreen('end-game-scr');
       
       if (game.quitBeforePlay) {
         game.gameResult = 'unavailable';
@@ -673,6 +717,7 @@ const game = {
         game.gameResult = 'lost';
         
       }; 
+      game.switchScreen('end-game-scr');
     });
 
     // Back to Menu button on End-game Screen
