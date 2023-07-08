@@ -278,7 +278,11 @@ const game = {
 
   showIncorrectWords: function () {
     game.percentageIncorrectWords = Math.round(game.numberIncorrectWords/game.completedWordsCount *100);
-    $('.percentage-incorrect-word').text(game.percentageIncorrectWords);
+    if (game.numberIncorrectWords !== 0) {
+      $('.percentage-incorrect-word').text(game.percentageIncorrectWords);
+    } else {
+      $('.percentage-incorrect-word').text('0');
+    }
   },
 
   resetHandleKeyup: function() {
@@ -724,9 +728,15 @@ const game = {
       game.switchScreen('end-game-scr');
     });
 
-    // Back to Menu button on End-game Screen
+    // Back to 'Menu' button on End-game Screen
     $('.btn-quit-1').on('click', function() {
       game.switchScreen('splash-scr');
+    });
+
+    // 'PlayAgain' button on End-game Screen - go back to gamescreen to play at the same mode and round.
+
+    $('.btn-play-again').on('click', function(){
+      game.switchScreen('game-scr');
     });
 
     // Ready to Type button on Game Screen
