@@ -42,6 +42,7 @@ const game = {
   monster: $('#monster-standing'),
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
+  gaugeBar: $('.gauge-bar'),
   percentageToLaunchFirstAttack: 45,
   percentageToLaunchFinalAttack: 100,
   loopDuration: 1,
@@ -172,6 +173,13 @@ const game = {
     };
   },
 
+  // the Monster gauge play a role of incorrectWords limit indicators
+  updateMonsterGauge: function () {
+    let gaugeUnit = game.numberIncorrectWords/game.totalWords * 100;
+    let percentageGaugeUnit = gaugeUnit/ game.incorrectWordsBreakPoint * 100;
+    game.gaugeBar.css('width',percentageGaugeUnit+'%');
+  },
+
   handleKeyup: function (event) {
     if (game.isRunning) {
       // console.log("key up", event, event.key);
@@ -258,7 +266,11 @@ const game = {
     game.numberIncorrectWords = completedWordsCount - game.numberCorrectWords;
     game.completedWordsCount = completedWordsCount;
     game.percentageCompletion = Math.floor(game.completedWordsCount/game.totalWords * 100);
-    if ((((game.numberIncorrectWords-1)/game.totalWords * 100)> game.incorrectWordsBreakPoint)){
+    // call function updateMonsterGauge to update the gauge bar
+    game.updateMonsterGauge();
+
+    // call loseGame function if the condition meet (incorrect word> breakpoint)
+    if ((((game.numberIncorrectWords)/game.totalWords * 100)> game.incorrectWordsBreakPoint)){
       
       game.loseGame();
     };
@@ -591,8 +603,9 @@ const game = {
     game.displayPlayerName();
     game.displayRound();
     game.monster.show();
+    $('.gauge').show();
     $('.hp-bar').show();
-    $('.progress-bar').css('width','100%');
+    $('.hp-progress-bar').css('width','100%');
   },
 
   resetSplashScreen: function (){
@@ -612,6 +625,8 @@ const game = {
     $('.player-name-display').text("");
     $('.mode-display').text("");
     $('.round-display').text("");
+    $('.gauge').hide();
+    game.gaugeBar.css('width', '0%');
     game.numberCorrectWords = 0;
     game.numberIncorrectWords = 0;
     game.completedWordsCount =0;
@@ -828,8 +843,6 @@ const game = {
 
 
     // Win game function
-    
-  
 
     // $(window).on('load', function() {
     //   console.log('Checking if we WIN');

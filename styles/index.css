@@ -429,11 +429,22 @@ main {
   background-color: #03c253;
 }
 
-.progress-monster {
+.progress-monster,
+.gauge {
   position: absolute;
   width: 14%;
   right: 8rem;
   top: 12.8rem;
+}
+
+.gauge {
+  top: 14rem;
+  display: none;
+}
+
+.gauge-bar {
+  background-color: rgb(173, 10, 10);
+  text-align: left;
 }
 
 .monster-hp-bar p {
