@@ -178,6 +178,11 @@ const game = {
     let gaugeUnit = game.numberIncorrectWords/game.totalWords * 100;
     let percentageGaugeUnit = gaugeUnit/ game.incorrectWordsBreakPoint * 100;
     game.gaugeBar.css('width',percentageGaugeUnit+'%');
+    if (percentageGaugeUnit >= 80) {
+      game.gaugeBar.addClass("blinking-gauge");
+    } else if (percentageGaugeUnit <80) {
+      game.gaugeBar.removeClass("blinking-gauge");
+    };
   },
 
   handleKeyup: function (event) {

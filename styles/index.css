@@ -399,7 +399,7 @@ main {
   height: auto;
 }
 
-/* HP bar */
+/* HP bar & Gauge bar with animation*/
 .hero-hp-bar p {
   color: rgb(40, 253, 7);
   font-size: 1rem;
@@ -452,6 +452,17 @@ main {
   right: 15rem;
   top: 11rem;
   color:rgb(40, 253, 7);
+}
+
+.blinking-gauge {
+  animation: blinkingBackground 2s infinite;
+}
+@keyframes blinkingBackground{
+  0%		{ background-color: rgb(173, 10, 10);}
+  25%		{ background-color: rgba(173, 10, 10, 0.344);}
+  50%		{ background-color: rgb(208, 15, 15);}
+  75%		{ background-color: rgba(173, 10, 10, 0.344);}
+  100%	{ background-color: rgb(173, 10, 10);}
 }
 
 /* ---------End Game Screen--------- */
