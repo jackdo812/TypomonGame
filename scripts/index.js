@@ -75,6 +75,7 @@ const game = {
       game.quitBeforePlay = null;
       game.resetGameScreen();
       game.resetTimer();
+      game.currentRound = '1';
     } else if (this.currentScreen === 'end-game-scr') {
       game.checkWordsPerMins();
       game.showIncorrectWords();
@@ -239,18 +240,19 @@ const game = {
         currentWord += userLetter;
       }
     }
-     // Check if there is any remaining word at the end (the above codes count completedword by the space but the last word won't end with a space so we need these code lines)
-     if (currentWord.trim() !== "") {
-      if (currentIndex === game.targetWords.length - 1) {
-        const lastTargetWord = game.targetWords[currentIndex];
-        if (currentWord === lastTargetWord || currentWord === lastTargetWord + ".") {
-          completedWordsCount++;
-          if (currentWord === lastTargetWord + ".") {
-            numberCorrectWords++;
-          }
-        }
+      // Check if the last word is fully typed
+    if (
+      currentWord.trim() !== "" &&
+      game.userText.length === game.targetText.length
+    ) {
+      completedWordsCount++;
+      const lastCorrectWord = game.targetWords[game.targetWords.length - 1];
+      if (currentWord === lastCorrectWord || currentWord === lastCorrectWord + ".") {
+        numberCorrectWords++;
       }
     }
+    
+    
   
     game.numberCorrectWords = numberCorrectWords;
     game.numberIncorrectWords = completedWordsCount - game.numberCorrectWords;
@@ -859,8 +861,8 @@ const game = {
 
   // Prepared paragraphs for data fetching
   text50: [
-    "Armed with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown. Perilous mountains and haunted forests stood in their path, but they pressed on, fueled by courage and the call of destiny. They faced fearsome beasts and conquered daunting trials, emerging as a legend whose tale would endure.",
-    "In a world yearning for salvation, a hero emerged from the shadows, driven by a burning desire to protect the innocent. With lightning-fast reflexes and a heart ablaze with righteousness, they battled dark forces that threatened to engulf the realm. Their valiant deeds etched their name in history, inspiring generations to come."
+    "Armed with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown.",
+    "In a world yearning for salvation, a hero emerged from the shadows, driven by a burning desire to protect the innocent."
   ],
 
   text70: [
