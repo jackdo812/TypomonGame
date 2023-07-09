@@ -132,7 +132,7 @@ const game = {
             game.targetText.push(paragraph[j]);
           }
         }
-
+      $("#target").append('<img id="end-typing-sign" src="images/dual-sword.png" alt="">');  
       $("#target").append("</p>");
       // these 2 lines of codes are for highlighting the first letter when the paragraph was generated
       $("#target span:eq(0)").addClass("cursorPosition");

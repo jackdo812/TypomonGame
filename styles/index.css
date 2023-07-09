@@ -213,6 +213,10 @@ span {
   font-size: 1.5rem;
 }
 
+#end-typing-sign {
+  width: 1.5rem;
+}
+
 /* color the correct and incorrect letters*/
 .correct {
   color: green;
