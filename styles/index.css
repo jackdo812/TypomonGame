@@ -146,6 +146,13 @@ body {
   display: flex;
   justify-content: space-around;
 }
+
+/* Mute Audio */
+
+.audio-icon {
+  width: 2rem;
+}
+
 /* ---------Game Screen--------- */
 
 /* Ready to Type Button */

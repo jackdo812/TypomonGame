@@ -32,6 +32,10 @@
               <input type="text" name="inputname" id="inputname" placeholder="Enter Your Name">
               <button type="button" class="btn btn-secondary credits" data-bs-toggle="modal" data-bs-target="#modal-credits">Credits</button>
             </div>
+            <div id="sound-option">
+              <p>Sound:</p>
+              <button id="control-audio" type="button" class="btn btn-light">On <img class="audio-icon" src="images/unmute-audio.png" alt="unmuted audio icon"></button>
+            </div>
             <p class="sub-heading">Choose your Hero:</p>
             <div class="hero-selection">
               <input type="radio" name="hero" id="hero-leaf" value="leaf">
@@ -176,14 +180,7 @@
         <div class="typing-screen">
           <div id="target"></div>
         </div>
-        <!-- Audio -->
-        <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
-        <audio id="fire-ball-audio" src="audio/fire-ball.wav"></audio>
-        <audio id="water-gun-audio" src="audio/water-gun-500.mp3"></audio>
-        <audio id="razor-leaf-audio" src="audio/razor-leaf.wav"></audio>
-        <audio id="waves-audio" src="audio/waves.wav"></audio>
-        <audio id="solar-beam-audio" src="audio/solarbeam.wav"></audio>
-        <audio id="shadowball-audio" src="audio/shadowball-audio.mp3"></audio>
+        
     </section>
     <!-- End-game Screen -->
     <section id="end-game-scr" class="end-game-screen screen" style="display: none;">
@@ -211,6 +208,18 @@
         <button type="button" class="btn btn-success btn-play-again">Play Again</button>
         <button type="button" class="btn btn-warning btn-next-round">Next Round</button>
     </section>
+     <!-- Audio -->
+     <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
+     <audio id="fire-ball-audio" src="audio/fire-ball.wav"></audio>
+     <audio id="water-gun-audio" src="audio/water-gun-500.mp3"></audio>
+     <audio id="razor-leaf-audio" src="audio/razor-leaf.wav"></audio>
+     <audio id="waves-audio" src="audio/waves.wav"></audio>
+     <audio id="solar-beam-audio" src="audio/solarbeam.wav"></audio>
+     <audio id="shadowball-audio" src="audio/shadowball-audio.mp3"></audio>
+     <audio id="opening-game-audio" class="background-audio" src="audio/opening-game.mp3" autoplay loop></audio>
+     <audio id="battle-audio" class="background-audio" src="audio/battle-background-audio.mp3" autoplay loop muted ></audio>
+     <audio id="win-audio" class="background-audio" src="audio/win-audio.mp3" autoplay loop muted ></audio>
+     <audio id="lose-audio" class="background-audio" src="audio/lose-audio.mp3" autoplay loop muted></audio>
     <!-- Modals -->
     <section id="modal-section">
       <div id="modal-instruction" class="modal fade" tabindex="-1" style="display: none;">

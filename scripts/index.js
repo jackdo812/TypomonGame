@@ -4,8 +4,8 @@ const game = {
   playerName: '',
   isRunning: false,
   wasRunning: false,
+  isAudioPlaying: true,
   gameResult: null,
-  resultMessages: $('#result-message'),
   quitBeforePlay: null,
   targetWords: [],
   targetText: [],
@@ -43,6 +43,8 @@ const game = {
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
   gaugeBar: $('.gauge-bar'),
+  resultMessages: $('#result-message'),
+  controlAudio: $('#control-audio'),
   percentageToLaunchFirstAttack: 45,
   percentageToLaunchFinalAttack: 100,
   loopDuration: 1,
@@ -62,6 +64,7 @@ const game = {
     this.currentScreen = newScreen;
     this.isRunning = false;
     this.wasRunning = false;
+    game.controlAudioEachScreen();
     
     if(this.currentScreen === 'game-scr') {
       $('.btn-ready').show();
@@ -93,6 +96,10 @@ const game = {
   toggleWasRunning: function () {
     console.log('toggle wasRunning successfully');
     game.wasRunning = !game.wasRunning;
+  },
+
+  toggleAudioOption: function () {
+    game.isAudioPlaying = !game.isAudioPlaying;
   },
 
   fetchTheBacon: () => {
@@ -343,7 +350,7 @@ const game = {
       $('.hero-name-display').text('Leaf');
     };
   },
-  
+  // ------ Battle Animation Functions ------
   heroFirstAttackAnimation: function () {
     if (game.chosenHero === 'fire') {
       // Hide hero standing and show spelling animation
@@ -530,6 +537,43 @@ const game = {
       game.hpHero.css('width','0%')}, 1200);
   },
 
+  // ------ Audio On/Off ------
+
+  audioOn: function () {
+    game.controlAudio.html('ON <img class="audio-icon" src="images/unmute-audio.png" alt="unmuted audio icon">');
+    game.controlAudio.addClass("btn-light");
+    game.controlAudio.removeClass("btn-secondary");
+    $('.background-audio').prop('muted',true);
+    
+  },
+
+  audioOff: function () {
+    game.controlAudio.html('OFF <img class="audio-icon" src="images/muted-audio.png" alt="muted audio icon">');
+    game.controlAudio.removeClass("btn-light");
+    game.controlAudio.addClass("btn-secondary");
+    $('.background-audio').prop('muted',true);
+  },
+
+  controlAudioEachScreen: function () {
+    if (game.isAudioPlaying) {
+
+      $('.background-audio').prop('muted',true);
+      if(game.currentScreen === 'splash-scr') {
+        $('#opening-game-audio').prop('muted',false); 
+      } else if (game.currentScreen === 'game-scr') {
+        $('#battle-audio').prop('muted',true);
+      } else if (game.currentScreen === 'end-game-scr') {
+          if (game.gameResult === 'won') {
+            $('#win-audio').prop('muted',false);
+          } else if (game.gameResult === 'lost' || game.gameResult === 'unavailable') {
+            $('#lose-audio').prop('muted',false);
+          };
+      };
+    } else {
+      return;
+    }
+  },
+
   // ------ Timer Set Up -------
   
   updateClockDisplay: function() {
@@ -557,7 +601,7 @@ const game = {
         }
     };
   },  
-    // start the timer loop and pause it.
+  // start the timer loop and pause it.
   startTimer: function() {
     if (game.isRunning) {
         game.timeoutId = setTimeout(game.countdownLoop, game.loopDuration);
@@ -752,6 +796,7 @@ const game = {
     game.startGame();
     $('#inputname, [name="difficulty"], [name="hero"]').on('change', game.startGame);
    
+
     // stlying mode buttons
     $('[name="difficulty"]').on('change', function() {
     game.selectedOption = $(this).val();
@@ -820,6 +865,12 @@ const game = {
     $('.btn-ready').on('click', function () {
       game.readyToType();
       $('.btn-ready').hide();
+      if(game.isAudioPlaying) {
+        $('#battle-audio').prop('muted',false);
+      } else {
+        return;
+      };
+      
     })
 
     // Help button on Game Screen
@@ -874,7 +925,20 @@ const game = {
       
       
     // });
+
+    game.controlAudio.on('click', function() {
+      if(game.isAudioPlaying) {
+        game.audioOff();
+        game.toggleAudioOption();
+      } else if (!game.isAudioPlaying) {
+        game.audioOn();
+        game.toggleAudioOption();
+        game.controlAudioEachScreen();
+      };
+    });
   },
+
+  
     
 
   // Prepared paragraphs for data fetching
