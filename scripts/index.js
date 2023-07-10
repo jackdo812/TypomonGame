@@ -42,7 +42,8 @@ const game = {
   monster: $('#monster-standing'),
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
-  gaugeBar: $('.gauge-bar'),
+  monsterGaugeBar: $('.gauge-bar'),
+  heroGaugeBar: $('.hero-gauge-bar'),
   resultMessages: $('#result-message'),
   controlAudio: $('#control-audio'),
   percentageToLaunchFirstAttack: 45,
@@ -184,11 +185,23 @@ const game = {
   updateMonsterGauge: function () {
     let gaugeUnit = game.numberIncorrectWords/game.totalWords * 100;
     let percentageGaugeUnit = gaugeUnit/ game.incorrectWordsBreakPoint * 100;
-    game.gaugeBar.css('width',percentageGaugeUnit+'%');
+    game.monsterGaugeBar.css('width',percentageGaugeUnit+'%');
     if (percentageGaugeUnit >= 80) {
-      game.gaugeBar.addClass("blinking-gauge");
+      game.monsterGaugeBar.addClass("blinking-gauge");
     } else if (percentageGaugeUnit <80) {
-      game.gaugeBar.removeClass("blinking-gauge");
+      game.monsterGaugeBar.removeClass("blinking-gauge");
+    };
+  },
+
+  updateHeroGauge: function (){
+    game.heroGaugeBar.css('width', game.percentageCompletion+"%");
+    if (game.percentageCompletion >= 35 && game.percentageCompletion <45) {
+      game.heroGaugeBar.addClass("blinking-hero-gauge2");
+    } else if (game.percentageCompletion >= 45 && game.percentageCompletion <80) {
+      game.heroGaugeBar.css('background-color','#f2900f');
+      game.heroGaugeBar.removeClass("blinking-hero-gauge2");
+    } else if (game.percentageCompletion >= 80) {
+      game.heroGaugeBar.addClass("blinking-hero-gauge1");
     };
   },
 
@@ -280,6 +293,9 @@ const game = {
     game.percentageCompletion = Math.floor(game.completedWordsCount/game.totalWords * 100);
     // call function updateMonsterGauge to update the gauge bar
     game.updateMonsterGauge();
+
+    // call function updateHeroGauge to update the gauge bar
+    game.updateHeroGauge();
 
     // call loseGame function if the condition meet (incorrect word> breakpoint)
     if (((game.numberIncorrectWords)/game.totalWords * 100)> game.incorrectWordsBreakPoint){
@@ -651,6 +667,7 @@ const game = {
     game.displayPlayerName();
     game.displayRound();
     game.monster.show();
+    $('.hero-gauge').show();
     $('.gauge').show();
     $('.hp-bar').show();
     $('.hp-progress-bar').css('width','100%');
@@ -674,7 +691,9 @@ const game = {
     $('.mode-display').text("");
     $('.round-display').text("");
     $('.gauge').hide();
-    game.gaugeBar.css('width', '0%');
+    $('.hero-gauge').hide();
+    game.monsterGaugeBar.css('width', '0%');
+    game.heroGaugeBar.css('width', '0%');
     game.numberCorrectWords = 0;
     game.numberIncorrectWords = 0;
     game.completedWordsCount =0;
@@ -695,6 +714,8 @@ const game = {
     $('#target').hide();
     game.minutes.hide();
     game.seconds.hide();
+    $('.hero-gauge').hide();
+    $('.gauge').hide();
     this.toggleIsRunning();
   },
 
@@ -708,6 +729,8 @@ const game = {
     $('.round-display').text("").show();
     game.minutes.show();
     game.seconds.show();
+    $('.hero-gauge').show();
+    $('.gauge').show();
     $('#target').show();
     this.toggleIsRunning();
     //delay 1s when resume to avoid the bug (skip 1s)
@@ -797,9 +820,6 @@ const game = {
     } 
   },
 
-  // drawGame: function () {
-  //   game.gameResult = 'draw';
-  // }, 
   
   init: () => {
     // Select to start the game

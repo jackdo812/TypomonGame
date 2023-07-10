@@ -427,6 +427,16 @@ main {
   width: 13%;
 }
 
+.hero-gauge {
+  position: absolute;
+  top: 15.12rem;
+  left: 3rem;
+  width: 13% !important;
+  /* display: block; */
+
+  display: none;
+}
+
 .progress {
   outline: 2px solid white;
   border-radius: 0;
@@ -434,6 +444,12 @@ main {
 }
 .progress-bar {
   background-color: #03c253;
+}
+
+.hero-gauge-bar {
+  background-color: #f2db0f;
+  color: black;
+  text-align: left;
 }
 
 .progress-monster,
@@ -470,6 +486,28 @@ main {
   50%		{ background-color: rgb(208, 15, 15);}
   75%		{ background-color: rgba(173, 10, 10, 0.344);}
   100%	{ background-color: rgb(173, 10, 10);}
+}
+
+.blinking-hero-gauge1 {
+  animation: blinkingBackgroundHero1 2s infinite;
+}
+@keyframes blinkingBackgroundHero1 {
+  0%		{ background-color: #f2db0f;}
+  25%		{ background-color: #f2db0f95;}
+  50%		{ background-color: #f2db0f;}
+  75%		{ background-color: #f2db0f95;}
+  100%	{ background-color: #f2db0f;}
+}
+
+.blinking-hero-gauge2 {
+  animation: blinkingBackgroundHero2 2s infinite;
+}
+@keyframes blinkingBackgroundHero2 {
+  0%		{ background-color: #f2900f;}
+  25%		{ background-color: #f2900f95;}
+  50%		{ background-color: #f2900f;}
+  75%		{ background-color: #f2900f95;}
+  100%	{ background-color: #f2900f;}
 }
 
 /* ---------End Game Screen--------- */
