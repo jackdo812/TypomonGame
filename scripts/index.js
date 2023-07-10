@@ -282,8 +282,7 @@ const game = {
     game.updateMonsterGauge();
 
     // call loseGame function if the condition meet (incorrect word> breakpoint)
-    if ((((game.numberIncorrectWords)/game.totalWords * 100)> game.incorrectWordsBreakPoint)){
-      
+    if (((game.numberIncorrectWords)/game.totalWords * 100)> game.incorrectWordsBreakPoint){
       game.loseGame();
     };
 
@@ -565,7 +564,7 @@ const game = {
       } else if (game.currentScreen === 'end-game-scr') {
           if (game.gameResult === 'won') {
             $('#win-audio').prop('muted',false);
-          } else if (game.gameResult === 'lost' || game.gameResult === 'unavailable') {
+          } else if (game.gameResult === 'lost' || game.gameResult === 'unavailable' || game.gameResult === 'draw') {
             $('#lose-audio').prop('muted',false);
           };
       };
@@ -730,6 +729,9 @@ const game = {
     clearTimeout(game.timeoutId);
     game.gameResult = 'lost';
     game.monsterAttack();
+    if (game.percentageCompletion === 100) {
+      game.gameResult = 'draw';
+    };
     game.timeoutId = setTimeout(function() {
      game.switchScreen('end-game-scr');}, 2000);
   },
@@ -741,6 +743,12 @@ const game = {
         game.resultMessages.html('<span>Unavailable</span> Go back and play...');
         game.unavailableSign.show();
         $('#summary-box').hide();
+        $('.btn-next-round').hide();
+      break;
+      case 'draw':
+        game.resultMessages.html('<span>Draw</span> I will forever remember your sacrifice...');
+        game.unavailableSign.show(); // Need to be changed later
+        $('#summary-box').show();
         $('.btn-next-round').hide();
       break;
       case 'lost':
@@ -756,7 +764,7 @@ const game = {
         };
       break;
       case 'won':
-        game.resultMessages.html('<span>You Win!</span> So sorry...');
+        game.resultMessages.html('<span>You Win!</span> Congratulations...');
         if(game.currentRound === '3') { // this condition prevents to show the Next Round button as round 3 is the maximum number of round in one mode.
           $('.btn-next-round').hide();
         } else {
@@ -789,7 +797,9 @@ const game = {
     } 
   },
 
-   
+  // drawGame: function () {
+  //   game.gameResult = 'draw';
+  // }, 
   
   init: () => {
     // Select to start the game
