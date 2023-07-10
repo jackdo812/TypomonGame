@@ -329,8 +329,8 @@ const game = {
 
   checkWordsPerMins: function () {
     let timeCompletion = (game.totalTime - game.timeRemaining) / 60; // how long (in minute) user complete his/her typing part
-    game.wordsPerMins = Math.round(game.completedWordsCount / timeCompletion);
-    console.log(this.wordsPerMins);
+    game.wordsPerMins = Math.round(game.numberCorrectWords / timeCompletion);
+    console.log(game.wordsPerMins);
     $('.wpm').text(game.wordsPerMins);
   },
 
