@@ -21,7 +21,7 @@
       <!-- Splash Screen -->
       <section id="splash-scr" class="splash-screen screen">
         <div class="start-game-info centered">
-        <h2>Typomon</h2>
+        <img id="logo" src="images/game-logo1.png" alt="Game Logo">
           <div class="start-game-box">
             <div class="intro-flex">
               <p> Welcome to your new adventure!</p>
@@ -31,6 +31,10 @@
             <div class="name-credits-flex">
               <input type="text" name="inputname" id="inputname" placeholder="Enter Your Name">
               <button type="button" class="btn btn-secondary credits" data-bs-toggle="modal" data-bs-target="#modal-credits">Credits</button>
+            </div>
+            <div id="sound-option">
+              <p>Sound:</p>
+              <button id="control-audio" type="button" class="btn btn-light">On <img class="audio-icon" src="images/unmute-audio.png" alt="unmuted audio icon"></button>
             </div>
             <p class="sub-heading">Choose your Hero:</p>
             <div class="hero-selection">
@@ -67,33 +71,41 @@
             </div>
             <div class="start-credit-flex">
         
-              <button type="button" class="btn btn-success btn-start">Start Game</button>
+              <button type="button" class="btn btn-success btn-start" disabled>Start Game</button>
             </div>
           </div>
         </div>
-        <img id="main-background" src="images/splash_bg.png" alt="background splash screen">
-      </section>
+        <img id="main-background" src="images/SplashBG_ver2.jpg" alt="background splash screen">
+        <!-- <video id="main-background" src="videos/SplashBG_ver2.mp4" autoplay loop></video> -->
+      </section> 
     <!-- Game Screen -->
     <section id="game-scr" class="game-screen screen" style="display: none;">
+       
+        <!-- Header Area -->
         <div class="header-1">
           <button type="button" class="btn btn-info btn-help" data-bs-toggle="modal" data-bs-target="#modal-game">Help</button>
           <h2>Battle</h2>
           <button type="button" class="btn btn-warning btn-end-game">Quit</button>
         </div>
         <div class="header-2">
-          <p>Name:</p>
-          <p>Mode:</p>
-          <p>Round:</p>
-          <p>Timer: <span id="mins">01</span>: <span id="secs">30</span></p>
+          <p>Player: <span class="player-name-display"></span></p>
+          <p>Mode: <span class="mode-display"></span></p>
+          <p>Round: <span class="round-display"></span></p>
+          <p class="timer">Timer: <span id="mins">00</span>: <span id="secs">00</span></p>
         </div>
+        <!-- Battle Area -->
         <div class="battle-screen">
           <img src="images/battle_bg.png" alt="battle background">
         </div>
-        <!-- Paragragh Generated Here -->
-        <div class="typing-screen">
-          <div id="target"></div>
+        
+         <div class="ready-button">
+          <button type="button" class="btn btn-outline-success btn-ready">Ready to Type</button>
         </div>
-        <!-- Heros Attacks -->
+        <!-- Heroes: standing, attack, takes damages-->
+            <!-- Fire -->
+        <div id="fire-standing" class="hero-standing">
+          <img src="gifs/Fire_idle.gif" alt="hero-standing">
+        </div>
         <div id="fireball" class="hero-attack-1">
           <img src="images/Fireball.png" alt="">
         </div>
@@ -102,6 +114,13 @@
         </div>
         <div id="inferno" class="hero-attack-2">
           <img src="gifs/Inferno_Attack.gif" alt="">
+        </div>
+        <div id="fire-shaking" class="hero-hurt">
+          <img src="gifs/Fire_hurt.gif" alt="">
+        </div>
+            <!-- Water -->
+        <div id="water-standing" class="hero-standing">
+          <img src="gifs/water_idle.gif" alt="hero-standing">
         </div>
         <div id="watergun" class="hero-attack-1">
           <img src="images/WaterGun.png" alt="">
@@ -112,6 +131,13 @@
         <div id="wave" class="hero-attack-1">
           <img src="images/Waves.png" alt="">
         </div>
+        <div id="water-shaking" class="hero-hurt">
+          <img src="gifs/Water_hurt.gif" alt="">
+        </div>
+            <!-- Leaf -->
+        <div id="leaf-standing" class="hero-standing">
+          <img src="gifs/leaf_idle.gif" alt="hero-standing">
+        </div>
         <div id="razorleaf" class="hero-attack-1">
           <img src="images/RazorLeaf.png" alt="">
         </div>
@@ -121,25 +147,84 @@
         <div id="solarbeam" class="hero-attack-2">
           <img src="gifs/Solarbeam_Attack.gif" alt="">
         </div>
-        <!-- Monster Take Damage -->
+        <div id="leaf-shaking" class="hero-hurt">
+          <img src="gifs/leaf_hurt.gif" alt="">
+        </div>
+        <!-- Monster: Standing, Attack & Takes Damage -->
+        <div id="monster-standing" class="monster-standing">
+          <img src="gifs/monster_stand.gif" alt="">
+        </div>
         <div id="monster-shaking" class="monster-hurt">
           <img src="gifs/Monster_hurt.gif" alt="">
         </div>
-        <!-- Audio -->
-        <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
-        <audio id="fire-ball-audio" src="audio/fire-ball.wav"></audio>
-        <audio id="water-gun-audio" src="audio/water-gun-500.mp3"></audio>
-        <audio id="razor-leaf-audio" src="audio/razor-leaf.wav"></audio>
-        <audio id="waves-audio" src="audio/waves.wav"></audio>
-        <audio id="solar-beam-audio" src="audio/solarbeam.wav"></audio>
-      </section>
+        <div id="shadowball" class="monster-attack">
+          <img src="images/ShadowBall.png" alt="">
+        </div>
+        <!-- HP bar -->
+        <div class="hp-bar hero-hp-bar">
+          <p><span class="hero-name-display">Hero Name</span> - HP:</p>
+          <div class="progress progress-hero" role="progressbar" aria-label="Example 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 18px">
+            <div class="progress-bar hero-hp hp-progress-bar" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="hp-bar monster-hp-bar">
+          <p><span>Monster</span> - HP:</p>
+          <div class="progress progress-monster" role="progressbar" aria-label="Example 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 18px">
+            <div class="progress-bar monster-hp hp-progress-bar " style="width: 100%"></div>
+          </div>
+        </div>
+         <!-- Hero Power Gauge -->
+         <div class="progress hero-gauge" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar hero-gauge-bar" style="width: 100%">Magic Gauge</div>
+        </div>
+        <!-- Monster Power Gauge -->
+        <div class="progress gauge" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar gauge-bar" style="width: 0%">Power Gauge</div>
+        </div>
+        <!-- Paragragh Generated Here -->
+        <div class="typing-screen">
+          <div id="target"></div>
+        </div>
+        
+    </section>
     <!-- End-game Screen -->
     <section id="end-game-scr" class="end-game-screen screen" style="display: none;">
         <h2>End Game Screen</h2>
-        <p>Congratulations!!! You did it... Thanks so much for saving us...You are the truly Hero. If you want to challenge yourself again, you can click "Play Again" button. It will create a spell to revive the monster. But be careful, that monster is not a joke.</p>
-        <button type="button" class="btn btn-danger btn-quit-1">Quit</button>
+        <!-- Signs -->
+        <img id="unvailable-icon" src="images/unvailable-icon.png" alt="">
+        <img class="hero-win fire-win" src="gifs/Fire_win.gif" alt="">
+        <img class="hero-win water-win" src="gifs/water_win.gif" alt="">
+        <img class="hero-win leaf-win" src="gifs/leaf_win.gif" alt="">
+        <img class="hero-lose fire-lose" src="gifs/Fire_lose.gif" alt="">
+        <img class="hero-lose water-lose" src="gifs/water_lost.gif" alt="">
+        <img class="hero-lose leaf-lose" src="gifs/leaf_lost.gif" alt="">
+        <!-- Messages -->
+        <p id="result-message"></p>
+        <!-- Summary Box -->
+        <div id="summary-box">
+          <p>Player: <span class="player-name-display"></span></p>
+          <p>Mode: <span class="mode-display"></span></p>
+          <p>Round: <span class="round-display"></span></p>
+          <p>Word Per Minute: <span class="wpm"></span></p>
+          <p>Incorrect Words: <span class="percentage-incorrect-word"></span>%</p>
+        </div>
+        <!-- Buttons -->
+        <button type="button" class="btn btn-danger btn-quit-1">Back to Menu</button>
         <button type="button" class="btn btn-success btn-play-again">Play Again</button>
+        <button type="button" class="btn btn-warning btn-next-round">Next Round</button>
     </section>
+     <!-- Audio -->
+     <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
+     <audio id="fire-ball-audio" src="audio/fire-ball.wav"></audio>
+     <audio id="water-gun-audio" src="audio/water-gun-500.mp3"></audio>
+     <audio id="razor-leaf-audio" src="audio/razor-leaf.wav"></audio>
+     <audio id="waves-audio" src="audio/waves.wav"></audio>
+     <audio id="solar-beam-audio" src="audio/solarbeam.wav"></audio>
+     <audio id="shadowball-audio" src="audio/shadowball-audio.mp3"></audio>
+     <audio id="opening-game-audio" class="background-audio" src="audio/opening-game.mp3" autoplay loop muted></audio>
+     <audio id="battle-audio" class="background-audio" src="audio/battle-background-audio.mp3" autoplay loop muted ></audio>
+     <audio id="win-audio" class="background-audio" src="audio/win-audio.mp3" autoplay loop muted ></audio>
+     <audio id="lose-audio" class="background-audio" src="audio/lose-audio.mp3" autoplay loop muted></audio>
     <!-- Modals -->
     <section id="modal-section">
       <div id="modal-instruction" class="modal fade" tabindex="-1" style="display: none;">

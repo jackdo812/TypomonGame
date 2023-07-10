@@ -2,11 +2,11 @@
 
 /* #splash-scr {
   display: none;
-}
+} */
 
-#game-scr {
+/* #game-scr {
   display: block !important;
-}  */
+} */
 
 /* #end-game-scr {
   display: block !important;
@@ -21,6 +21,10 @@ body {
 /* ---------Splash Screen--------- */
 #splash-scr {
   position: relative;
+}
+
+#logo {
+  width: 18rem;
 }
 
 .centered {
@@ -51,6 +55,7 @@ body {
 
 #main-background {
   width: 100%;
+  height: 100vh;
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -146,7 +151,32 @@ body {
   display: flex;
   justify-content: space-around;
 }
+
+/* Mute Audio */
+
+.audio-icon {
+  width: 2rem;
+}
+
 /* ---------Game Screen--------- */
+
+/* Ready to Type Button */
+
+.ready-button {
+  position: absolute;
+  text-align: center;
+  top: 15rem;
+  left: 0;
+  right: 0;
+}
+
+.btn-ready {
+  font-size: 4rem;
+  padding: 1rem 2rem;
+  border: 5px solid white;
+}
+
+/* ---- Header ---- */
 .header-1 {
   display: flex;
   justify-content: space-between;
@@ -167,14 +197,14 @@ body {
 
 .battle-screen img {
   width: 100%;
-  height: 37rem;
+  height: 27rem;
   object-fit: cover;
   object-position: top;
   box-shadow: 0px 3px 6px 1px black;
 }
 
 .typing-screen {
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
   border-left: 4mm ridge rgba(71, 72, 55, 0.6);
   border-right: 4mm ridge rgba(71, 72, 55, 0.6);
@@ -184,9 +214,19 @@ body {
   font-size:1.1rem;
 }
 
+.star {
+  width: 2rem;
+}
+
+/* ----End Header ---- */
+
 /* font-size for the text in the paragraph */
 span {
   font-size: 1.5rem;
+}
+
+#end-typing-sign {
+  width: 1.5rem;
 }
 
 /* color the correct and incorrect letters*/
@@ -220,15 +260,23 @@ span {
   }
 }
 
-/* Animation for static image */
+/* Animation Attacks for both Heroes and Monster*/
+
+/* Static image (png) - attack */
 main {
   position: relative;
 }
+
+.battle-screen {
+  position: relative;
+}
+
 .hero-attack-1 {
   position: absolute;
   animation: move-to-the-right 1000ms forwards;
   display: none;
   left: 3rem;
+  top: 20rem;
 }
 
 @keyframes move-to-the-right {
@@ -257,30 +305,77 @@ main {
   display: none;
 }
 
-
-
 #wave img {
   width: 20rem;
   z-index: 10;
 }
 
+#shadowball {
+  position: absolute;
+  top: 16.5rem;
+}
+
+#shadowball img {
+  width: 13rem;
+  height: auto;
+}
+
+.monster-attack {
+  display: none;
+  animation: move-and-roll 1.3s linear forwards;
+}
+
+@keyframes move-and-roll {
+  0% {
+    transform: translateX(1000px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100px) rotate(360deg);
+    opacity: 0.8;
+  }
+}
 /* GIFs */
 
 .spelling {
   position:absolute;
   display: none;
+  top: 17rem;
 }
 
 .monster-hurt {
   position:absolute;
   display: none;
   right: 3rem;
+  top: 13rem;
 }
 
-.spelling img,
-.monster-hurt img {
+.monster-standing {
+  position:absolute;
+  right: 3rem;
+  top: 13rem;
+}
+
+.spelling img {
   width: 18rem;
   height: auto;
+}
+
+.monster-hurt img,
+.monster-standing img {
+  width: 22rem;
+  height: auto;
+}
+
+#water-spelling,
+#water-standing,
+#water-shaking {
+  left: 3rem;
+}
+
+#water-spelling img,
+#water-standing img,
+#water-shaking img {
+  width: 13rem;
 }
 
 #inferno {
@@ -290,8 +385,9 @@ main {
 }
 
 #solarbeam {
-  left: 15rem;
+  left: 18rem;
   z-index: 10;
+  top: 16rem;
 }
 
 #solarbeam img {
@@ -299,5 +395,154 @@ main {
   height: 15rem;
 }
 
+.hero-standing,
+.hero-hurt {
+  position: absolute;
+  top: 17rem;
+}
+
+.hero-hurt {
+  display: none;
+}
+
+.hero-standing img,
+.hero-hurt img {
+  width: 18rem;
+  height: auto;
+}
+
+/* HP bar & Gauge bar with animation*/
+.hero-hp-bar p {
+  color: rgb(40, 253, 7);
+  font-size: 1rem;
+  position: absolute;
+  top: 12rem;
+  left: 3rem;
+}
+
+.hero-hp-bar span,
+.monster-hp-bar span {
+  font-size: 1.1rem;
+  color: white;
+}
+.progress-hero {
+  position: absolute;
+  top: 13.8rem;
+  left: 3rem;
+  width: 13%;
+}
+
+.hero-gauge {
+  position: absolute;
+  top: 15.12rem;
+  left: 3rem;
+  width: 13% !important;
+  /* display: block; */
+
+  display: none;
+}
+
+.progress {
+  outline: 2px solid white;
+  border-radius: 0;
+  background-color: transparent;
+}
+.progress-bar {
+  background-color: #03c253;
+}
+
+.hero-gauge-bar {
+  background-color: #f2db0f;
+  color: black;
+  text-align: left;
+}
+
+.progress-monster,
+.gauge {
+  position: absolute;
+  width: 14%;
+  right: 8rem;
+  top: 12.8rem;
+}
+
+.gauge {
+  top: 14rem;
+  display: none;
+}
+
+.gauge-bar {
+  background-color: rgb(173, 10, 10);
+  text-align: left;
+}
+
+.monster-hp-bar p {
+  position: absolute;
+  right: 15rem;
+  top: 11rem;
+  color:rgb(40, 253, 7);
+}
+
+.blinking-gauge {
+  animation: blinkingBackground 2s infinite;
+}
+@keyframes blinkingBackground{
+  0%		{ background-color: rgb(173, 10, 10);}
+  25%		{ background-color: rgba(173, 10, 10, 0.344);}
+  50%		{ background-color: rgb(208, 15, 15);}
+  75%		{ background-color: rgba(173, 10, 10, 0.344);}
+  100%	{ background-color: rgb(173, 10, 10);}
+}
+
+.blinking-hero-gauge1 {
+  animation: blinkingBackgroundHero1 2s infinite;
+}
+@keyframes blinkingBackgroundHero1 {
+  0%		{ background-color: #f2db0f;}
+  25%		{ background-color: #f2db0f95;}
+  50%		{ background-color: #f2db0f;}
+  75%		{ background-color: #f2db0f95;}
+  100%	{ background-color: #f2db0f;}
+}
+
+.blinking-hero-gauge2 {
+  animation: blinkingBackgroundHero2 2s infinite;
+}
+@keyframes blinkingBackgroundHero2 {
+  0%		{ background-color: #f2900f;}
+  25%		{ background-color: #f2900f95;}
+  50%		{ background-color: #f2900f;}
+  75%		{ background-color: #f2900f95;}
+  100%	{ background-color: #f2900f;}
+}
 
 /* ---------End Game Screen--------- */
+
+/* Win - Lose - Unvailable Sign */
+#end-game-scr {
+  position: relative;
+}
+
+.hero-win,
+.hero-lose {
+  display: none;
+}
+
+.fire-win,
+.fire-lose {
+  width: 19rem;
+}
+
+.water-win,
+.water-lose {
+  width: 13rem;
+}
+
+.leaf-win,
+.leaf-lose {
+  width: 16rem;
+}
+
+#unvailable-icon {
+  width: 15rem;
+  display: none;
+}
