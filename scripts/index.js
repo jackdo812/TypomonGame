@@ -788,6 +788,7 @@ const game = {
       break;
       case 'won':
         game.resultMessages.html('<span>You Win!</span> Congratulations...');
+        $('#summary-box').show();
         if(game.currentRound === '3') { // this condition prevents to show the Next Round button as round 3 is the maximum number of round in one mode.
           $('.btn-next-round').hide();
         } else {
