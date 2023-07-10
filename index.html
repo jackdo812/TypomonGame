@@ -189,7 +189,9 @@
     </section>
     <!-- End-game Screen -->
     <section id="end-game-scr" class="end-game-screen screen" style="display: none;">
-        <h2>End Game Screen</h2>
+      <div id="end-game-box">
+
+        <!-- <h2>End Game Screen</h2> -->
         <!-- Signs -->
         <img id="unvailable-icon" src="images/unvailable-icon.png" alt="">
         <img class="hero-win fire-win" src="gifs/Fire_win.gif" alt="">
@@ -209,9 +211,14 @@
           <p>Incorrect Words: <span class="percentage-incorrect-word"></span>%</p>
         </div>
         <!-- Buttons -->
-        <button type="button" class="btn btn-danger btn-quit-1">Back to Menu</button>
-        <button type="button" class="btn btn-success btn-play-again">Play Again</button>
-        <button type="button" class="btn btn-warning btn-next-round">Next Round</button>
+        <div id="end-game-buttons">
+          <button type="button" class="btn btn-danger btn-quit-1">Back to Menu</button>
+          <button type="button" class="btn btn-success btn-play-again">Play Again</button>
+          <button type="button" class="btn btn-warning btn-next-round">Next Round</button>
+        </div>
+      </div>
+        <!-- Background Image -->
+        <img id="end-game-bkg" src="images/EndScreen_BG.jpg" alt="">
     </section>
      <!-- Audio -->
      <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
@@ -235,6 +242,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <p>Notice: Best experience at full screen: <strong>1512 x 945</strong>!</p>
                 <ol>
                   <li>Enter your name.</li>
                   <li>Choose your Hero.</li>

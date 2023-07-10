@@ -1,6 +1,6 @@
 /* Toggle Screen */
-
-/* #splash-scr {
+/* 
+#splash-scr {
   display: none;
 } */
 
@@ -25,6 +25,7 @@ body {
 
 #logo {
   width: 18rem;
+  margin-top: 4rem;
 }
 
 .centered {
@@ -35,9 +36,9 @@ body {
   height: 100%;
 }
 
-.centered h2 {
+/* .centered h2 {
   margin-top: 8rem;
-}
+} */
 
 .start-game-box {
   border: thick double black;
@@ -530,6 +531,8 @@ main {
 /* Win - Lose - Unvailable Sign */
 #end-game-scr {
   position: relative;
+  text-align: center;
+
 }
 
 .hero-win,
@@ -555,4 +558,50 @@ main {
 #unvailable-icon {
   width: 15rem;
   display: none;
+}
+
+/* Summary Box */
+
+#summary-box {
+  padding: 1.5rem;
+  border: 2px dashed black;
+  border-radius: 10px;
+  width: 60%;
+  margin: 0 auto 2rem;
+  text-align: left;
+  background-color: rgb(253, 239, 220);
+}
+
+#summary-box p {
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+}
+
+#end-game-bkg{
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#end-game-box {
+  border: 4px solid black;
+  background-color: #f2900f;
+  border-radius: 10px;
+  width: 50%;
+  margin: 0 auto;
+  position: absolute;
+  top: 8rem;
+  left: 0;
+  right: 0;
+  
+}
+
+#end-game-buttons {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-around;
 }
