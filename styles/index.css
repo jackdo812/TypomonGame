@@ -155,7 +155,17 @@ body {
 /* Mute Audio */
 
 .audio-icon {
-  width: 2rem;
+  width: 1.5rem;
+}
+
+#sound-option {
+  display: flex;
+  justify-content: space-between;
+}
+
+#sound-option p {
+  align-items: center;
+  font-weight: 600;
 }
 
 /* ---------Game Screen--------- */
