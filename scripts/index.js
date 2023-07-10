@@ -564,7 +564,7 @@ const game = {
       } else if (game.currentScreen === 'end-game-scr') {
           if (game.gameResult === 'won') {
             $('#win-audio').prop('muted',false);
-          } else if (game.gameResult === 'lost' || game.gameResult === 'unavailable' || game.gameResult === 'draw') {
+          } else if (game.gameResult === 'lost' || game.gameResult === 'unavailable' || game.gameResult === 'draw' ) {
             $('#lose-audio').prop('muted',false);
           };
       };
