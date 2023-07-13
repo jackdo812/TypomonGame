@@ -39,6 +39,7 @@ const game = {
   waterLose: $('.water-lose'),
   leafLose: $('.leaf-lose'),
   unavailableSign: $('#unvailable-icon'),
+  drawSign: $('#draw-icon'),
   monster: $('#monster-standing'),
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
@@ -746,6 +747,7 @@ const game = {
     $('.hero-win').hide();
     $('.hero-lose').hide();
     game.unavailableSign.hide();
+    game.drawSign.hide();
   },
 
   loseGame: function (){
@@ -771,7 +773,7 @@ const game = {
       break;
       case 'draw':
         game.resultMessages.html('<span>Draw</span><br>  I will forever remember your sacrifice...');
-        game.unavailableSign.show(); // Need to be changed later
+        game.drawSign.show(); 
         $('#summary-box').show();
         $('.btn-next-round').hide();
       break;
@@ -976,8 +978,8 @@ const game = {
 
   // Prepared paragraphs for data fetching
   text50: [
-    "Armed with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown.",
-    "Step into a world where the veil of reality is gently lifted, revealing a realm of captivating magic. Cascading waterfalls glimmer with golden essence, their droplets imbued with extraordinary properties. Energetic sprites dart among sunlit meadows, their playful laughter filling the air. Ancient trees, their branches laden with ancient wisdom, whisper secrets only the attentive can decipher. Ethereal beings, shimmering with light, traverse the skies, leaving trails of stardust in their wake. Enchanted crystals pulse with raw power, harnessed by skilled sorcerers for noble pursuits. Each step reveals hidden doorways to enchanted realms, where time bends and dreams take tangible form. It is a world of limitless possibility, where the ordinary is infused with the extraordinary, and where the boundary between reality and imagination dissolves into a symphony of wonder. In this magical world, the wonders of the cosmos are but a touch away, and the essence of magic dances in harmony with the pulse of life itself."
+    "Armed plumage-graced with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown.",
+    "Armed with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown."
   ],
 
   text70: [

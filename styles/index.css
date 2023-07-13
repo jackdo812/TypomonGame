@@ -227,7 +227,7 @@ body {
   object-fit: cover;
   object-position: top;
   box-shadow: 0px 3px 6px 1px black;
-  margin-top: 7rem;
+  margin-top: 6.9rem;
   position:relative;
 }
 
@@ -251,6 +251,10 @@ body {
 
 .star {
   width: 2rem;
+}
+
+.timer {
+  width: 8rem;
 }
 
 /* ----End Header ---- */
@@ -684,6 +688,12 @@ main {
 #unvailable-icon {
   width: 15rem;
   display: none;
+}
+
+#draw-icon {
+  width: 8rem;
+  display: none;
+  margin-top: 1rem;
 }
 
 /* Summary Box */
