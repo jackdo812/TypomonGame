@@ -233,12 +233,12 @@ body {
 .typing-screen {
   position: absolute;
   z-index: 999;
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   border: 2px solid black;
   border-top: 0;
   box-shadow: 1px 6px 1px 3px;
-  height: 17.7rem;
+  height: 20.7rem;
   line-height: 2rem;
   padding: 1rem 1.5rem;
   font-size:1.1rem;

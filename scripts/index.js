@@ -196,12 +196,12 @@ const game = {
   updateHeroGauge: function (){
     game.heroGaugeBar.css('width', game.percentageCompletion+"%");
     if (game.percentageCompletion >= 35 && game.percentageCompletion <45) {
-      game.heroGaugeBar.addClass("blinking-hero-gauge2");
+      game.heroGaugeBar.addClass("blinking-hero-gauge1");
     } else if (game.percentageCompletion >= 45 && game.percentageCompletion <80) {
       game.heroGaugeBar.css('background-color','#f2900f');
-      game.heroGaugeBar.removeClass("blinking-hero-gauge2");
+      game.heroGaugeBar.removeClass("blinking-hero-gauge1");
     } else if (game.percentageCompletion >= 80) {
-      game.heroGaugeBar.addClass("blinking-hero-gauge1");
+      game.heroGaugeBar.addClass("blinking-hero-gauge2");
     };
   },
 
@@ -977,7 +977,7 @@ const game = {
   // Prepared paragraphs for data fetching
   text50: [
     "Armed with a gleaming sword and unwavering resolve, the hero ventured into the treacherous unknown.",
-    "In a world yearning for salvation, a hero emerged from the shadows, driven by a burning desire to protect the innocent."
+    "Step into a world where the veil of reality is gently lifted, revealing a realm of captivating magic. Cascading waterfalls glimmer with golden essence, their droplets imbued with extraordinary properties. Energetic sprites dart among sunlit meadows, their playful laughter filling the air. Ancient trees, their branches laden with ancient wisdom, whisper secrets only the attentive can decipher. Ethereal beings, shimmering with light, traverse the skies, leaving trails of stardust in their wake. Enchanted crystals pulse with raw power, harnessed by skilled sorcerers for noble pursuits. Each step reveals hidden doorways to enchanted realms, where time bends and dreams take tangible form. It is a world of limitless possibility, where the ordinary is infused with the extraordinary, and where the boundary between reality and imagination dissolves into a symphony of wonder. In this magical world, the wonders of the cosmos are but a touch away, and the essence of magic dances in harmony with the pulse of life itself."
   ],
 
   text70: [
