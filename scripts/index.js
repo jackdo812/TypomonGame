@@ -465,8 +465,8 @@ const game = {
         game.heroWater.fadeIn()}, 1000);
         // Wave animation
         game.timeoutId3 = setTimeout (function () {
-          $('#wave').addClass("hero-attack-1").show().one("animationend", function () {
-            $('#wave').removeClass("hero-attack-1").hide();
+          $('#wave').addClass("wave-animation").show().one("animationend", function () {
+            $('#wave').removeClass("wave-animation").hide();
             game.runFinalAnimation = true;
           });}, 500);
           game.runFinalAnimation = true; 

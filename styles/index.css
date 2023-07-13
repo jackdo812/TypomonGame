@@ -45,8 +45,8 @@ body {
 } */
 
 .start-game-box {
-  border: 2px solid black;
-  box-shadow: 1px 1px 1px 1px;
+  border: 4px solid black;
+  box-shadow: 0px 0px 5px 3px #1c1b1b;
   padding: 2rem;
   border-radius: 10px;
   background-color: rgb(233, 231, 229);
@@ -97,7 +97,7 @@ body {
   /* Custom styles for the radio button */
   display: inline-block;
   padding: 5px 10px;
-  background-color: #eaeaea;
+  background-color: #f8f9fa;
   border-radius: 4px;
   margin-right: 10px;
   cursor: pointer;
@@ -116,6 +116,7 @@ body {
 
 .hero-selection label {
   cursor: pointer;
+  border: 0.3rem solid transparent;
 }
 
 .hero-selection input[type="radio"]:checked + label {
@@ -305,7 +306,7 @@ main {
 
 .hero-attack-1 {
   position: absolute;
-  animation: move-to-the-right 1000ms forwards;
+  animation: move-to-the-right 1300ms forwards;
   display: none;
   left: 3rem;
   top: 20rem;
@@ -316,14 +317,45 @@ main {
     transform: translateX(100px);
   }
   100% {
-    transform: translateX(700px);
+    transform: translateX(1100px);
     opacity: 0.8;
   }
+}
+
+/* Customer animation for Waves */
+.wave-animation {
+  position: absolute;
+  animation: move-and-bigger 1300ms forwards;
+  display: none;
+  left: 3rem;
+  top: 20rem;
+}
+
+@keyframes move-and-bigger {
+  0% {
+    transform: translateX(100px) scale(1);
+  }
+  100% {
+    transform: translateX(1100px) scale(2);
+    opacity: 0.8;
+  }
+}
+
+#razorleaf img {
+  width: 8rem;
 }
 
 .hero-attack-1 img {
   width: 10rem;
   height: auto; 
+}
+
+#watergun {
+  top: 15rem;
+}
+
+#fireball {
+  top: 17rem;
 }
 
 #watergun img,
@@ -337,8 +369,8 @@ main {
   display: none;
 }
 
-#wave img {
-  width: 20rem;
+#wave {
+  top: 24rem;
   z-index: 10;
 }
 
