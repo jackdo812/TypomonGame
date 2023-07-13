@@ -709,12 +709,7 @@ const game = {
     $('.hero-standing').hide();
     $('.monster-standing').hide();
     $('.hp-bar').hide();
-    $('.player-name-display').text("").hide();
-    $('.mode-display').text("").hide();
-    $('.round-display').text("").hide();
-    $('#target').hide();
-    game.minutes.hide();
-    game.seconds.hide();
+    $('#target').hide();  
     $('.hero-gauge').hide();
     $('.gauge').hide();
     this.toggleIsRunning();
@@ -725,12 +720,6 @@ const game = {
     game.showHeroAtFirst();
     $('.monster-standing').show();
     $('.hp-bar').show();
-    $('.player-name-display').text("").show();
-    console.log('show player name');
-    $('.mode-display').text("").show();
-    $('.round-display').text("").show();
-    game.minutes.show();
-    game.seconds.show();
     $('.hero-gauge').show();
     $('.gauge').show();
     $('#target').show();
@@ -911,9 +900,10 @@ const game = {
     $(document).on('show.bs.modal', '#modal-game', function() {
       if(game.isRunning && !game.wasRunning) {
         game.pauseGameScreen();
-        console.log('pause game');
         game.toggleWasRunning();
-        console.log('change wasRunning');
+        if (game.currentScreen === 'game-scr') {
+          $('#battle-audio')[0].pause();
+        }
       } else if (!game.isRunning && !game.wasRunning)  {
         return;
       }
@@ -923,8 +913,10 @@ const game = {
     $(document).on('hidden.bs.modal', '#modal-game', function() {
       if(!game.isRunning && game.wasRunning) {
         game.resumeGameScreen();
-        console.log('resume game -1 ');
         game.toggleWasRunning();
+        if (game.currentScreen === 'game-scr') {
+          $('#battle-audio')[0].play();
+        }
       } else if (!game.isRunning && !game.wasRunning) {
         return;
       }
