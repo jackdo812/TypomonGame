@@ -317,7 +317,7 @@ const game = {
       game.timeoutId = setTimeout (function () {
         game.hpMonster.css('width','60%')}, 1200);
     } else if (!game.runFirstAnimation && !game.runSecondAnimation) {
-      $('#fireball').removeClass("hero-attack-1").hide();
+      $('#fireball').removeClass("fireball-animation").hide();
       $('#watergun').removeClass("hero-attack-1").hide();
       $('#razorleaf').removeClass("hero-attack-1").hide();
     };
@@ -377,8 +377,8 @@ const game = {
       game.timeoutId = setTimeout (function () {
         game.heroFire.fadeIn()}, 1000);
       // Fireball animation
-      $('#fireball').addClass("hero-attack-1").show().one("animationend", function () {
-        $('#fireball').removeClass("hero-attack-1").hide();
+      $('#fireball').addClass("fireball-animation").show().one("animationend", function () {
+        $('#fireball').removeClass("fireball-animation").hide();
         game.runFirstAnimation = true;
       });
       game.runFirstAnimation = true; 

@@ -323,6 +323,54 @@ main {
   }
 }
 
+/* Customer animation for Fire Ball */
+.fireball-animation {
+  position: absolute;
+  animation: move-diagonal 1000ms forwards;
+  display: none;
+  left: 3rem;
+  top: 20rem;
+}
+
+@keyframes move-diagonal {
+  0% {
+    transform: translate(100px, 0);
+  }
+  10% {
+    transform: translate(200px, 1px);
+  }
+  20% {
+    transform: translate(300px, 2px);
+  }
+  30% {
+    transform: translate(400px, 3px);
+  }
+  40% {
+    transform: translate(500px, 4px);
+  }
+  50% {
+    transform: translate(600px, 3px);
+  }
+  60% {
+    transform: translate(700px, 2px);
+  }
+  70% {
+    transform: translate(800px, 1px);
+  }
+  80% {
+    transform: translate(900px, 0);
+  }
+  90% {
+    transform: translate(1000px, 1px);
+  }
+  100% {
+    transform: translate(1100px, 2px);
+    opacity: 0.8;
+  }
+}
+
+
+
 /* Customer animation for Waves */
 .wave-animation {
   position: absolute;
