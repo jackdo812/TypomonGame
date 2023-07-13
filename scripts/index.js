@@ -725,6 +725,7 @@ const game = {
     $('.monster-standing').show();
     $('.hp-bar').show();
     $('.player-name-display').text("").show();
+    console.log('show player name');
     $('.mode-display').text("").show();
     $('.round-display').text("").show();
     game.minutes.show();
@@ -763,19 +764,19 @@ const game = {
     const result = game.gameResult;
     switch (result) {
       case 'unavailable':
-        game.resultMessages.html('<span>Unavailable</span> Go back and play...');
+        game.resultMessages.html('<span>Unavailable</span><br> Go back and play...');
         game.unavailableSign.show();
         $('#summary-box').hide();
         $('.btn-next-round').hide();
       break;
       case 'draw':
-        game.resultMessages.html('<span>Draw</span> I will forever remember your sacrifice...');
+        game.resultMessages.html('<span>Draw</span><br>  I will forever remember your sacrifice...');
         game.unavailableSign.show(); // Need to be changed later
         $('#summary-box').show();
         $('.btn-next-round').hide();
       break;
       case 'lost':
-        game.resultMessages.html('<span>You Lose!</span> So sorry...');
+        game.resultMessages.html('<span>You Lose!</span><br>  So sorry...');
         $('#summary-box').show();
         $('.btn-next-round').hide();
         if(game.chosenHero === 'fire') {
@@ -787,7 +788,7 @@ const game = {
         };
       break;
       case 'won':
-        game.resultMessages.html('<span>You Win!</span> Congratulations...');
+        game.resultMessages.html('<span>You Win!</span><br> Congratulations...');
         $('#summary-box').show();
         if(game.currentRound === '3') { // this condition prevents to show the Next Round button as round 3 is the maximum number of round in one mode.
           $('.btn-next-round').hide();
@@ -920,6 +921,7 @@ const game = {
     $(document).on('hidden.bs.modal', '#modal-game', function() {
       if(!game.isRunning && game.wasRunning) {
         game.resumeGameScreen();
+        console.log('resume game -1 ');
         game.toggleWasRunning();
       } else if (!game.isRunning && !game.wasRunning) {
         return;
