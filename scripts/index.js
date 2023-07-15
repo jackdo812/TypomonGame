@@ -575,7 +575,7 @@ const game = {
 
       $('.background-audio').prop('muted',true);
       if(game.currentScreen === 'splash-scr') {
-        $('#opening-game-audio').prop('muted',false); 
+        $('#opening-game-audio').prop('muted',false);   
       } else if (game.currentScreen === 'game-scr') {
         $('#battle-audio').prop('muted',true);
       } else if (game.currentScreen === 'end-game-scr') {
