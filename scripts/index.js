@@ -91,12 +91,10 @@ const game = {
   },
 
   toggleIsRunning: function () {
-    console.log('toggle isRunning successfully');
     game.isRunning = !game.isRunning;
   },
 
   toggleWasRunning: function () {
-    console.log('toggle wasRunning successfully');
     game.wasRunning = !game.wasRunning;
   },
 
@@ -208,7 +206,6 @@ const game = {
 
   handleKeyup: function (event) {
     if (game.isRunning) {
-      // console.log("key up", event, event.key);
       // these lines of codes help to add cursor position with styles and remove these styles when the letters were typed.
       const cursorPosition = game.userText.length +1;
       const pastCursorPosition = game.userText.length;
@@ -225,18 +222,14 @@ const game = {
       // Checking key valid or invalid then call functions
       const regex = /^[a-z ,.'-]$/i;
       if (regex.test(event.key)) {
-        // console.log("valid key");
         game.checkLetterMatch(event.key);
         game.checkWordCompletion(event.key);
       } else {
-        // console.log("invalid key");
       };
     } return; 
   },
 
   checkLetterMatch: (letter) => {
-    console.log(letter);
-
     const currentIndex = game.userText.length;
     if (letter === game.targetText[currentIndex]) {
       $("#target > span").eq(currentIndex).removeClass("incorrect");
@@ -331,7 +324,6 @@ const game = {
   checkWordsPerMins: function () {
     let timeCompletion = (game.totalTime - game.timeRemaining) / 60; // how long (in minute) user complete his/her typing part
     game.wordsPerMins = Math.round(game.numberCorrectWords / timeCompletion);
-    console.log(game.wordsPerMins);
     $('.wpm').text(game.wordsPerMins);
   },
 
@@ -609,7 +601,6 @@ const game = {
             game.updateClockDisplay();
             // clearTimeout(timeoutId);
             game.timeoutId = setTimeout(game.countdownLoop,game.loopDuration * 1000);
-            console.log(game.timeREmaining);
         } else if (game.timeRemaining <= 0) {
             if (game.percentageCompletion < 100) {
               game.loseGame();
@@ -705,7 +696,6 @@ const game = {
   },
 
   pauseGameScreen: function () {
-    console.log('pause game successfully');
     $('.hero-standing').hide();
     $('.monster-standing').hide();
     $('.hp-bar').hide();
@@ -716,7 +706,6 @@ const game = {
   },
 
   resumeGameScreen: function () {
-    console.log('resume game successfully');
     game.showHeroAtFirst();
     $('.monster-standing').show();
     $('.hp-bar').show();
@@ -803,9 +792,7 @@ const game = {
     if (game.timeRemaining >= 0 &&
       ((game.numberIncorrectWords / game.totalWords * 100) <= game.incorrectWordsBreakPoint)
     ) {
-      console.log('Done checking conditions');
       game.gameResult = 'won';
-      console.log('Set gameResult to WON')
       clearTimeout(this.timeoutId);
       game.timeoutId = setTimeout(function() {
         game.switchScreen('end-game-scr');
@@ -823,8 +810,6 @@ const game = {
     // stlying mode buttons
     $('[name="difficulty"]').on('change', function() {
     game.selectedOption = $(this).val();
-    console.log("Selected difficulty: " + game.selectedOption);
-  
     $('[name="difficulty"]').each(function() {
       if ($(this).val() === 'hard') {
         $(this).next('label').css('background-color', game.selectedOption === 'hard' ? 'red' : '');
