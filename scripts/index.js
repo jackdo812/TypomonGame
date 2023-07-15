@@ -755,19 +755,19 @@ const game = {
     const result = game.gameResult;
     switch (result) {
       case 'unavailable':
-        game.resultMessages.html('<span>Unavailable</span><br> Go back and play...');
+        game.resultMessages.html('<p><span>Unavailable</span><br> Sorry you did not enter the battle so there is nothing to report. Please go back and play...</p>');
         game.unavailableSign.show();
         $('#summary-box').hide();
         $('.btn-next-round').hide();
       break;
       case 'draw':
-        game.resultMessages.html('<span>Draw</span><br>  I will forever remember your sacrifice...');
+        game.resultMessages.html('<p><span>Draw</span><br> We will forever remember your sacrifice...</p>');
         game.drawSign.show(); 
         $('#summary-box').show();
         $('.btn-next-round').hide();
       break;
       case 'lost':
-        game.resultMessages.html('<span>You Lose!</span><br>  So sorry...');
+        game.resultMessages.html("<p><span>You Lose!</span><br> Unfortunately, the monster is too strong. But, don't give up! We know you can do it!!!</p>");
         $('#summary-box').show();
         $('.btn-next-round').hide();
         if(game.chosenHero === 'fire') {
@@ -779,7 +779,7 @@ const game = {
         };
       break;
       case 'won':
-        game.resultMessages.html('<span>You Win!</span><br> Congratulations...');
+        game.resultMessages.html('<p><span>You Win!</span><br> Congratulations...you are a true hero!!!</p>');
         $('#summary-box').show();
         if(game.currentRound === '3') { // this condition prevents to show the Next Round button as round 3 is the maximum number of round in one mode.
           $('.btn-next-round').hide();

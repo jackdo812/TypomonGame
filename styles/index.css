@@ -658,6 +658,11 @@ main {
   color: white;
 }
 
+#result-message p {
+  font-size: 1.2rem;
+  padding: 0 1rem;
+}
+
 #result-message span {
   text-transform: uppercase;
   font-size: 1.7rem;
