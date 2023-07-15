@@ -26,6 +26,7 @@ const game = {
   runFirstAnimation: false,
   runFinalAnimation: false,
   chosenHero: '',
+  // refer to hero animation
   heroFire: $('#fire-standing'),
   heroWater: $('#water-standing'),
   heroLeaf: $('#leaf-standing'),
@@ -38,15 +39,16 @@ const game = {
   fireLose: $('.fire-lose'),
   waterLose: $('.water-lose'),
   leafLose: $('.leaf-lose'),
-  unavailableSign: $('#unvailable-icon'),
-  drawSign: $('#draw-icon'),
-  monster: $('#monster-standing'),
+  unavailableSign: $('#unvailable-icon'), //end-game icon
+  drawSign: $('#draw-icon'), //end-game icon
+  monster: $('#monster-standing'), //Monster
+  // HP bar
   hpHero: $('.hero-hp'),
   hpMonster: $('.monster-hp'),
   monsterGaugeBar: $('.gauge-bar'),
   heroGaugeBar: $('.hero-gauge-bar'),
   resultMessages: $('#result-message'),
-  controlAudio: $('#control-audio'),
+  controlAudio: $('#control-audio'), //Audio
   percentageToLaunchFirstAttack: 45,
   percentageToLaunchFinalAttack: 100,
   loopDuration: 1,
@@ -102,6 +104,7 @@ const game = {
     game.isAudioPlaying = !game.isAudioPlaying;
   },
 
+  //Generate the paragraphs
   fetchTheBacon: () => {
     let paragraph = '';
     // Set the conditions to generate the PARAGRAPH & TIMER based on the mode and round
@@ -241,7 +244,7 @@ const game = {
 
     game.userText.push(letter);
   },
-  // Count number of correct words
+  // Count number of correct words. word completion, incorrect words...
   checkWordCompletion: function () {
     let completedWordsCount = 0;
     let numberCorrectWords = 0;
@@ -641,6 +644,7 @@ const game = {
     });
   },
 
+  // Function run after clicking on Ready to Type button on game screen
   readyToType: function () {
     game.setupGameScreen();
     game.toggleIsRunning();
@@ -921,8 +925,6 @@ const game = {
     });
   },
 
-  
-    
 
   // Prepared paragraphs for data fetching
   text50: [
