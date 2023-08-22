@@ -650,7 +650,7 @@ const game = {
         // Unmute and play the opening game audio from the beginning
         $("#opening-game-audio").prop("currentTime", 0);
         $("#opening-game-audio").prop("muted", false);
-        $("#opening-game-audio").trigger("play");
+        $("#opening-game-audio").trigger("play"); // .play() is still working in this case
       } else if (game.currentScreen === "game-scr") {
         // Pause the battle audio and mute it
         $("#battle-audio").prop("currentTime", 0);
