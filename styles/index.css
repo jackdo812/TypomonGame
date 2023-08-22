@@ -1,15 +1,14 @@
 /* ---------General--------- */
 body {
-  font-family: 'Changa', sans-serif;
+  font-family: "Changa", sans-serif;
   overflow: hidden;
   margin: 0;
 }
 
 #inputname:focus {
   border: 2px solid rgb(255, 187, 0);
-  outline: rgb(255, 187, 0);;
+  outline: rgb(255, 187, 0);
 }
-
 
 /* ---------Splash Screen--------- */
 #splash-scr {
@@ -56,7 +55,6 @@ body {
   background-color: rgb(233, 231, 229);
 }
 
-
 #splash-scr div {
   position: relative;
   z-index: 10;
@@ -77,7 +75,7 @@ body {
   display: inline-block;
   border: 1px solid white;
   text-align: center;
-  background-color:rgb(253, 244, 232);
+  background-color: rgb(253, 244, 232);
   border-radius: 10px;
 }
 
@@ -106,7 +104,7 @@ body {
   cursor: pointer;
 }
 
-.level-select input[type="radio"]:checked + label  {
+.level-select input[type="radio"]:checked + label {
   /* Styles for the checked radio button */
   background-color: #2ecc71;
   color: #fff;
@@ -124,7 +122,7 @@ body {
 
 .hero-selection input[type="radio"]:checked + label {
   border: 0.3rem solid rgb(255, 187, 0);
-  border-radius:10px;
+  border-radius: 10px;
   margin-bottom: 0;
 }
 
@@ -134,16 +132,19 @@ body {
   align-items: center;
 }
 
-#inputname {
-  width: 60%;
-  border-radius: 3px;
+.welcome {
+  font-size: 1.2rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-.name-credits-flex {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+#inputname {
+  width: 100%;
+  height: 2.2rem;
+  border-radius: 3px;
+  margin: 0.5rem auto;
 }
+
 #inputname::placeholder {
   opacity: 0.5;
   font-size: 0.9rem;
@@ -171,6 +172,7 @@ body {
 #sound-option {
   display: flex;
   justify-content: space-between;
+  margin: 1rem auto;
 }
 
 #sound-option p {
@@ -234,7 +236,7 @@ body {
   object-position: top;
   box-shadow: 0px 3px 6px 1px black;
   margin-top: 6.9rem;
-  position:relative;
+  position: relative;
 }
 
 .typing-screen {
@@ -248,7 +250,7 @@ body {
   height: 20.7rem;
   line-height: 2rem;
   padding: 1rem 1.5rem;
-  font-size:1.1rem;
+  font-size: 1.1rem;
   background-image: url(../images/dialog-1.jpg);
   left: 0;
   right: 0;
@@ -284,13 +286,12 @@ span {
 
 /* make cursor position blinking and has yellow background */
 .cursorPosition {
-  
   text-decoration: underline;
   animation: blink 0.8s infinite;
 }
 
 .cursorPosition-bkg {
-  background-color: yellow; 
+  background-color: yellow;
 }
 
 @keyframes blink {
@@ -380,8 +381,6 @@ main {
   }
 }
 
-
-
 /* Customer animation for Waves */
 .wave-animation {
   position: absolute;
@@ -407,7 +406,7 @@ main {
 
 .hero-attack-1 img {
   width: 10rem;
-  height: auto; 
+  height: auto;
 }
 
 #watergun {
@@ -461,20 +460,20 @@ main {
 /* GIFs */
 
 .spelling {
-  position:absolute;
+  position: absolute;
   display: none;
   top: 17rem;
 }
 
 .monster-hurt {
-  position:absolute;
+  position: absolute;
   display: none;
   right: 3rem;
   top: 13rem;
 }
 
 .monster-standing {
-  position:absolute;
+  position: absolute;
   right: 3rem;
   top: 13rem;
 }
@@ -562,7 +561,6 @@ main {
   top: 15.12rem;
   left: 3rem;
   width: 13% !important;
-  
 
   display: none;
 }
@@ -604,40 +602,70 @@ main {
   position: absolute;
   right: 15rem;
   top: 11rem;
-  color:rgb(40, 253, 7);
+  color: rgb(40, 253, 7);
 }
 
 .blinking-gauge {
   animation: blinkingBackground 2s infinite;
 }
-@keyframes blinkingBackground{
-  0%		{ background-color: rgb(173, 10, 10);}
-  25%		{ background-color: rgba(173, 10, 10, 0.344);}
-  50%		{ background-color: rgb(208, 15, 15);}
-  75%		{ background-color: rgba(173, 10, 10, 0.344);}
-  100%	{ background-color: rgb(173, 10, 10);}
+@keyframes blinkingBackground {
+  0% {
+    background-color: rgb(173, 10, 10);
+  }
+  25% {
+    background-color: rgba(173, 10, 10, 0.344);
+  }
+  50% {
+    background-color: rgb(208, 15, 15);
+  }
+  75% {
+    background-color: rgba(173, 10, 10, 0.344);
+  }
+  100% {
+    background-color: rgb(173, 10, 10);
+  }
 }
 
 .blinking-hero-gauge1 {
   animation: blinkingBackgroundHero1 2s infinite;
 }
 @keyframes blinkingBackgroundHero1 {
-  0%		{ background-color: #f2db0f;}
-  25%		{ background-color: #f2db0f95;}
-  50%		{ background-color: #f2db0f;}
-  75%		{ background-color: #f2db0f95;}
-  100%	{ background-color: #f2db0f;}
+  0% {
+    background-color: #f2db0f;
+  }
+  25% {
+    background-color: #f2db0f95;
+  }
+  50% {
+    background-color: #f2db0f;
+  }
+  75% {
+    background-color: #f2db0f95;
+  }
+  100% {
+    background-color: #f2db0f;
+  }
 }
 
 .blinking-hero-gauge2 {
   animation: blinkingBackgroundHero2 2s infinite;
 }
 @keyframes blinkingBackgroundHero2 {
-  0%		{ background-color: #f2900f;}
-  25%		{ background-color: #f2900f95;}
-  50%		{ background-color: #f2900f;}
-  75%		{ background-color: #f2900f95;}
-  100%	{ background-color: #f2900f;}
+  0% {
+    background-color: #f2900f;
+  }
+  25% {
+    background-color: #f2900f95;
+  }
+  50% {
+    background-color: #f2900f;
+  }
+  75% {
+    background-color: #f2900f95;
+  }
+  100% {
+    background-color: #f2900f;
+  }
 }
 
 /* ---------End Game Screen--------- */
@@ -645,12 +673,11 @@ main {
 
 #end-game-buttons .btn-next-round {
   color: white;
-  background-color: #0dcaf0;;
+  background-color: #0dcaf0;
   border-color: #0dcaf0;
 }
 #end-game-buttons .btn-next-round:focus {
   box-shadow: 0 0 0 0.25rem #0dcaf084;
-
 }
 
 /* Result Messages */
@@ -668,12 +695,10 @@ main {
   font-size: 1.7rem;
 }
 
-
 /* Win - Lose - Unvailable Sign */
 #end-game-scr {
   position: relative;
   text-align: center;
-
 }
 
 .hero-win,
@@ -721,10 +746,10 @@ main {
 
 #summary-box p {
   font-size: 1.2rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
-#end-game-bkg{
+#end-game-bkg {
   width: 100%;
   height: 100vh;
   object-fit: cover;
@@ -745,7 +770,6 @@ main {
   top: 8rem;
   left: 0;
   right: 0;
-  
 }
 
 #end-game-buttons {

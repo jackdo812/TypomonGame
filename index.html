@@ -35,7 +35,7 @@
           <img id="logo" src="images/game-logo1.png" alt="Game Logo" />
           <div class="start-game-box">
             <div class="intro-flex">
-              <p>Welcome to your new adventure!</p>
+              <p class="welcome">Welcome to your new adventure!</p>
               <button
                 type="button"
                 class="btn btn-info btn-instruction"
@@ -46,14 +46,16 @@
               </button>
             </div>
             <label for="inputname"></label>
-            <div class="name-credits-flex">
-              <input
-                type="text"
-                name="inputname"
-                id="inputname"
-                maxlength="30"
-                placeholder="Enter Your Name"
-              />
+
+            <input
+              type="text"
+              name="inputname"
+              id="inputname"
+              maxlength="30"
+              placeholder="Enter Your Name"
+            />
+
+            <div id="sound-option">
               <button
                 type="button"
                 class="btn btn-secondary credits"
@@ -62,9 +64,6 @@
               >
                 Credits
               </button>
-            </div>
-            <div id="sound-option">
-              <p>Sound:</p>
               <button id="control-audio" type="button" class="btn btn-light">
                 On
                 <img
