@@ -1,8 +1,10 @@
 /* ---------General--------- */
 body {
   font-family: "Changa", sans-serif;
-  overflow: hidden;
-  margin: 0;
+  /* overflow: hidden; */
+  margin: 0 auto;
+  width: 1512px;
+  max-width: 100%;
 }
 
 #inputname:focus {
