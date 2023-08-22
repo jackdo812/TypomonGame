@@ -626,7 +626,7 @@ const game = {
 
   audioOn: function () {
     game.controlAudio.html(
-      'ON <img class="audio-icon" src="images/unmute-audio.png" alt="unmuted audio icon">'
+      'ON  <img class="audio-icon" src="images/unmute-audio.png" alt="unmuted audio icon">'
     );
     game.controlAudio.addClass("btn-light");
     game.controlAudio.removeClass("btn-secondary");
