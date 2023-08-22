@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Typomon</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <!-- Bootstrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Changa:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <!-- Customer CSS Styles -->
     <link rel="stylesheet" href="./styles/index.css" />
   </head>
@@ -21,314 +32,568 @@
       <!-- Splash Screen -->
       <section id="splash-scr" class="splash-screen screen">
         <div class="start-game-info centered">
-        <img id="logo" src="images/game-logo1.png" alt="Game Logo">
+          <img id="logo" src="images/game-logo1.png" alt="Game Logo" />
           <div class="start-game-box">
             <div class="intro-flex">
-              <p> Welcome to your new adventure!</p>
-              <button type="button" class="btn btn-info btn-instruction" data-bs-toggle="modal" data-bs-target="#modal-instruction">Instructions</button> 
+              <p>Welcome to your new adventure!</p>
+              <button
+                type="button"
+                class="btn btn-info btn-instruction"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-instruction"
+              >
+                Instructions
+              </button>
             </div>
             <label for="inputname"></label>
             <div class="name-credits-flex">
-              <input type="text" name="inputname" id="inputname" placeholder="Enter Your Name">
-              <button type="button" class="btn btn-secondary credits" data-bs-toggle="modal" data-bs-target="#modal-credits">Credits</button>
+              <input
+                type="text"
+                name="inputname"
+                id="inputname"
+                maxlength="30"
+                placeholder="Enter Your Name"
+              />
+              <button
+                type="button"
+                class="btn btn-secondary credits"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-credits"
+              >
+                Credits
+              </button>
             </div>
             <div id="sound-option">
               <p>Sound:</p>
-              <button id="control-audio" type="button" class="btn btn-light">On <img class="audio-icon" src="images/unmute-audio.png" alt="unmuted audio icon"></button>
+              <button id="control-audio" type="button" class="btn btn-light">
+                On
+                <img
+                  class="audio-icon"
+                  src="images/unmute-audio.png"
+                  alt="unmuted audio icon"
+                />
+              </button>
             </div>
             <p class="sub-heading">Choose your Hero:</p>
             <div class="hero-selection">
-              <input type="radio" name="hero" id="hero-leaf" value="leaf">
+              <input type="radio" name="hero" id="hero-leaf" value="leaf" />
               <label for="hero-leaf">
                 <div>
-                  <img id="leaf" src="images/character-leaf.png" alt="character hero leaf">
+                  <img
+                    id="leaf"
+                    src="images/character-leaf.png"
+                    alt="character hero leaf"
+                  />
                   <p>Leaf</p>
                 </div>
               </label>
-              <input type="radio" name="hero" id="hero-water" value="water">
+              <input type="radio" name="hero" id="hero-water" value="water" />
               <label for="hero-water">
                 <div>
-                  <img id="water" src="images/character-water.png" alt="character hero water">
+                  <img
+                    id="water"
+                    src="images/character-water.png"
+                    alt="character hero water"
+                  />
                   <p>Water</p>
                 </div>
               </label>
-              <input type="radio" name="hero" id="hero-fire" value="fire">
+              <input type="radio" name="hero" id="hero-fire" value="fire" />
               <label for="hero-fire">
                 <div>
-                  <img id="fire" src="images/character-fire.png" alt="character hero fire">
+                  <img
+                    id="fire"
+                    src="images/character-fire.png"
+                    alt="character hero fire"
+                  />
                   <p>Fire</p>
                 </div>
               </label>
             </div>
             <p class="sub-heading p-difficulty">Difficulty level:</p>
             <div class="level-select">
-              <input type="radio" id="easy" name="difficulty" value="easy">
+              <input type="radio" id="easy" name="difficulty" value="easy" />
               <label for="easy">Easy</label>
-              <input type="radio" id="normal" name="difficulty" value="normal">
+              <input
+                type="radio"
+                id="normal"
+                name="difficulty"
+                value="normal"
+              />
               <label for="normal">Normal</label>
-              <input type="radio" id="hard" name="difficulty" value="hard">
+              <input type="radio" id="hard" name="difficulty" value="hard" />
               <label for="hard" id="hard-label">Hard</label>
             </div>
             <div class="start-credit-flex">
-        
-              <button type="button" class="btn btn-success btn-start" disabled>Start Game</button>
+              <button type="button" class="btn btn-success btn-start" disabled>
+                Start Game
+              </button>
             </div>
           </div>
         </div>
         <!-- <img id="main-background" src="images/SplashBG_ver2.jpg" alt="background splash screen"> -->
-        <video id="main-background" src="videos/SplashBG_ver2.mp4" autoplay loop></video>
-      </section> 
-    <!-- Game Screen -->
-    <section id="game-scr" class="game-screen screen" style="display: none;">
-       
+        <video
+          id="main-background"
+          src="videos/SplashBG_ver2.mp4"
+          autoplay
+          loop
+        ></video>
+      </section>
+      <!-- Game Screen -->
+      <section id="game-scr" class="game-screen screen" style="display: none">
         <!-- Header Area -->
         <div class="header-1">
-          <button type="button" class="btn btn-info btn-help" data-bs-toggle="modal" data-bs-target="#modal-game">Help</button>
+          <button
+            type="button"
+            class="btn btn-info btn-help"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-game"
+          >
+            Help
+          </button>
           <h2>Battle</h2>
-          <button type="button" class="btn btn-warning btn-end-game">Quit</button>
+          <button type="button" class="btn btn-warning btn-end-game">
+            Quit
+          </button>
         </div>
         <div class="header-2">
           <p>Player: <span class="player-name-display"></span></p>
           <p>Mode: <span class="mode-display"></span></p>
           <p>Round: <span class="round-display"></span></p>
-          <p class="timer">Timer: <span id="mins">00</span>: <span id="secs">00</span></p>
+          <p class="timer">
+            Timer: <span id="mins">00</span>: <span id="secs">00</span>
+          </p>
         </div>
         <!-- Battle Area -->
         <div class="battle-screen">
-          <img src="images/battle_bg.png" alt="battle background">
+          <img src="images/battle_bg.png" alt="battle background" />
         </div>
-        
-         <div class="ready-button">
-          <button type="button" class="btn btn-outline-success btn-ready">Ready to Type</button>
+
+        <div class="ready-button">
+          <button type="button" class="btn btn-outline-success btn-ready">
+            Click here to Type
+          </button>
         </div>
         <!-- Heroes: standing, attack, takes damages-->
-            <!-- Fire -->
+        <!-- Fire -->
         <div id="fire-standing" class="hero-standing">
-          <img src="gifs/Fire_idle.gif" alt="hero-standing">
+          <img src="gifs/Fire_idle.gif" alt="hero-standing" />
         </div>
         <div id="fireball" class="hero-attack-1">
-          <img src="images/Fireball.png" alt="">
+          <img src="images/Fireball.png" alt="" />
         </div>
         <div id="fire-spelling" class="spelling">
-          <img src="gifs/Fire_attack.gif" alt="">
+          <img src="gifs/Fire_attack.gif" alt="" />
         </div>
         <div id="inferno" class="hero-attack-2">
-          <img src="gifs/Inferno_Attack.gif" alt="">
+          <img src="gifs/Inferno_Attack.gif" alt="" />
         </div>
         <div id="fire-shaking" class="hero-hurt">
-          <img src="gifs/Fire_hurt.gif" alt="">
+          <img src="gifs/Fire_hurt.gif" alt="" />
         </div>
-            <!-- Water -->
+        <!-- Water -->
         <div id="water-standing" class="hero-standing">
-          <img src="gifs/water_idle.gif" alt="hero-standing">
+          <img src="gifs/water_idle.gif" alt="hero-standing" />
         </div>
         <div id="watergun" class="hero-attack-1">
-          <img src="images/WaterGun.png" alt="">
+          <img src="images/WaterGun.png" alt="" />
         </div>
         <div id="water-spelling" class="spelling">
-          <img src="gifs/water_attack.gif" alt="">
+          <img src="gifs/water_attack.gif" alt="" />
         </div>
         <div id="wave" class="hero-attack-1">
-          <img src="images/Waves.png" alt="">
+          <img src="images/Waves.png" alt="" />
         </div>
         <div id="water-shaking" class="hero-hurt">
-          <img src="gifs/Water_hurt.gif" alt="">
+          <img src="gifs/Water_hurt.gif" alt="" />
         </div>
-            <!-- Leaf -->
+        <!-- Leaf -->
         <div id="leaf-standing" class="hero-standing">
-          <img src="gifs/leaf_idle.gif" alt="hero-standing">
+          <img src="gifs/leaf_idle.gif" alt="hero-standing" />
         </div>
         <div id="razorleaf" class="hero-attack-1">
-          <img src="images/RazorLeaf.png" alt="">
+          <img src="images/RazorLeaf.png" alt="" />
         </div>
         <div id="leaf-spelling" class="spelling">
-          <img src="gifs/leaf_attack.gif" alt="">
+          <img src="gifs/leaf_attack.gif" alt="" />
         </div>
         <div id="solarbeam" class="hero-attack-2">
-          <img src="gifs/Solarbeam_Attack.gif" alt="">
+          <img src="gifs/Solarbeam_Attack.gif" alt="" />
         </div>
         <div id="leaf-shaking" class="hero-hurt">
-          <img src="gifs/leaf_hurt.gif" alt="">
+          <img src="gifs/leaf_hurt.gif" alt="" />
         </div>
         <!-- Monster: Standing, Attack & Takes Damage -->
         <div id="monster-standing" class="monster-standing">
-          <img src="gifs/monster_stand.gif" alt="">
+          <img src="gifs/monster_stand.gif" alt="" />
         </div>
         <div id="monster-shaking" class="monster-hurt">
-          <img src="gifs/Monster_hurt.gif" alt="">
+          <img src="gifs/Monster_hurt.gif" alt="" />
         </div>
         <div id="shadowball" class="monster-attack">
-          <img src="images/ShadowBall.png" alt="">
+          <img src="images/ShadowBall.png" alt="" />
         </div>
         <!-- HP bar -->
         <div class="hp-bar hero-hp-bar">
           <p><span class="hero-name-display">Hero Name</span> - HP:</p>
-          <div class="progress progress-hero" role="progressbar" aria-label="Example 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 18px">
-            <div class="progress-bar hero-hp hp-progress-bar" style="width: 100%"></div>
+          <div
+            class="progress progress-hero"
+            role="progressbar"
+            aria-label="Example 20px high"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="height: 18px"
+          >
+            <div
+              class="progress-bar hero-hp hp-progress-bar"
+              style="width: 100%"
+            ></div>
           </div>
         </div>
         <div class="hp-bar monster-hp-bar">
           <p><span>Monster</span> - HP:</p>
-          <div class="progress progress-monster" role="progressbar" aria-label="Example 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 18px">
-            <div class="progress-bar monster-hp hp-progress-bar " style="width: 100%"></div>
+          <div
+            class="progress progress-monster"
+            role="progressbar"
+            aria-label="Example 20px high"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="height: 18px"
+          >
+            <div
+              class="progress-bar monster-hp hp-progress-bar"
+              style="width: 100%"
+            ></div>
           </div>
         </div>
-         <!-- Hero Power Gauge -->
-         <div class="progress hero-gauge" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar hero-gauge-bar" style="width: 100%">Magic Gauge</div>
+        <!-- Hero Power Gauge -->
+        <div
+          class="progress hero-gauge"
+          role="progressbar"
+          aria-label="Example with label"
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <div class="progress-bar hero-gauge-bar" style="width: 100%">
+            Magic Gauge
+          </div>
         </div>
         <!-- Monster Power Gauge -->
-        <div class="progress gauge" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar gauge-bar" style="width: 0%">Power Gauge</div>
+        <div
+          class="progress gauge"
+          role="progressbar"
+          aria-label="Example with label"
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <div class="progress-bar gauge-bar" style="width: 0%">
+            Power Gauge
+          </div>
         </div>
         <!-- Paragragh Generated Here -->
         <div class="typing-screen">
           <div id="target"></div>
         </div>
-        
-    </section>
-    <!-- End-game Screen -->
-    <section id="end-game-scr" class="end-game-screen screen" style="display: none;">
-      <div id="end-game-box">
-
-        <!-- <h2>End Game Screen</h2> -->
-        <!-- Signs -->
-        <img id="unvailable-icon" src="images/unvailable-icon.png" alt="">
-        <img id="draw-icon" src="images/dual-sword-draw-game.png" alt="">
-        <img class="hero-win fire-win" src="gifs/Fire_win.gif" alt="">
-        <img class="hero-win water-win" src="gifs/water_win.gif" alt="">
-        <img class="hero-win leaf-win" src="gifs/leaf_win.gif" alt="">
-        <img class="hero-lose fire-lose" src="gifs/Fire_lose.gif" alt="">
-        <img class="hero-lose water-lose" src="gifs/water_lost.gif" alt="">
-        <img class="hero-lose leaf-lose" src="gifs/leaf_lost.gif" alt="">
-        <!-- Messages -->
-        <p id="result-message"></p>
-        <!-- Summary Box -->
-        <div id="summary-box">
-          <p>Player: <span class="player-name-display"></span></p>
-          <p>Mode: <span class="mode-display"></span></p>
-          <p>Round: <span class="round-display"></span></p>
-          <p>Word Per Minute: <span class="wpm"></span></p>
-          <p>Incorrect Words: <span class="percentage-incorrect-word"></span>%</p>
+      </section>
+      <!-- End-game Screen -->
+      <section
+        id="end-game-scr"
+        class="end-game-screen screen"
+        style="display: none"
+      >
+        <div id="end-game-box">
+          <!-- <h2>End Game Screen</h2> -->
+          <!-- Signs -->
+          <img id="unvailable-icon" src="images/unvailable-icon.png" alt="" />
+          <img id="draw-icon" src="images/dual-sword-draw-game.png" alt="" />
+          <img class="hero-win fire-win" src="gifs/Fire_win.gif" alt="" />
+          <img class="hero-win water-win" src="gifs/water_win.gif" alt="" />
+          <img class="hero-win leaf-win" src="gifs/leaf_win.gif" alt="" />
+          <img class="hero-lose fire-lose" src="gifs/Fire_lose.gif" alt="" />
+          <img class="hero-lose water-lose" src="gifs/water_lost.gif" alt="" />
+          <img class="hero-lose leaf-lose" src="gifs/leaf_lost.gif" alt="" />
+          <!-- Messages -->
+          <p id="result-message"></p>
+          <!-- Summary Box -->
+          <div id="summary-box">
+            <p>Player: <span class="player-name-display"></span></p>
+            <p>Mode: <span class="mode-display"></span></p>
+            <p>Round: <span class="round-display"></span></p>
+            <p>Word Per Minute: <span class="wpm"></span></p>
+            <p>
+              Incorrect Words: <span class="percentage-incorrect-word"></span>%
+            </p>
+          </div>
+          <!-- Buttons -->
+          <div id="end-game-buttons">
+            <button type="button" class="btn btn-danger btn-quit-1">
+              Back to Menu
+            </button>
+            <button type="button" class="btn btn-success btn-play-again">
+              Play Again
+            </button>
+            <button type="button" class="btn btn-warning btn-next-round">
+              Next Round
+            </button>
+          </div>
         </div>
-        <!-- Buttons -->
-        <div id="end-game-buttons">
-          <button type="button" class="btn btn-danger btn-quit-1">Back to Menu</button>
-          <button type="button" class="btn btn-success btn-play-again">Play Again</button>
-          <button type="button" class="btn btn-warning btn-next-round">Next Round</button>
-        </div>
-      </div>
         <!-- Background Image -->
-        <img id="end-game-bkg" src="images/EndScreen_BG.jpg" alt="">
-    </section>
-     <!-- Audio -->
-     <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
-     <audio id="fire-ball-audio" src="audio/fire-ball.wav"></audio>
-     <audio id="water-gun-audio" src="audio/water-gun-500.mp3"></audio>
-     <audio id="razor-leaf-audio" src="audio/razor-leaf.wav"></audio>
-     <audio id="waves-audio" src="audio/waves.wav"></audio>
-     <audio id="solar-beam-audio" src="audio/solarbeam.wav"></audio>
-     <audio id="shadowball-audio" src="audio/shadowball-audio.mp3"></audio>
-     <audio id="opening-game-audio" class="background-audio" src="audio/opening-game.mp3" autoplay loop></audio>
-     <audio id="battle-audio" class="background-audio" src="audio/battle-background-audio.mp3" autoplay loop muted ></audio>
-     <audio id="win-audio" class="background-audio" src="audio/win-audio.mp3" autoplay loop muted ></audio>
-     <audio id="lose-audio" class="background-audio" src="audio/lose-audio.mp3" autoplay loop muted></audio>
-    <!-- Modals -->
-    <section id="modal-section">
-      <div id="modal-instruction" class="modal fade" tabindex="-1" style="display: none;">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">How to Start your Journey</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>Notice: Best experience at full screen: <strong>1512 x 945</strong>!</p>
+        <img id="end-game-bkg" src="images/EndScreen_BG.jpg" alt="" />
+      </section>
+      <!-- Audio -->
+      <audio id="takehit-audio" src="audio/takehit.mp3"></audio>
+      <audio id="fire-ball-audio" src="audio/fire-ball.wav"></audio>
+      <audio id="water-gun-audio" src="audio/water-gun-500.mp3"></audio>
+      <audio id="razor-leaf-audio" src="audio/razor-leaf.wav"></audio>
+      <audio id="waves-audio" src="audio/waves.wav"></audio>
+      <audio id="solar-beam-audio" src="audio/solarbeam.wav"></audio>
+      <audio id="shadowball-audio" src="audio/shadowball-audio.mp3"></audio>
+      <audio
+        id="opening-game-audio"
+        class="background-audio"
+        src="audio/opening-game.mp3"
+        autoplay
+        loop
+      ></audio>
+      <audio
+        id="battle-audio"
+        class="background-audio"
+        src="audio/battle-background-audio.mp3"
+        autoplay
+        loop
+        muted
+      ></audio>
+      <audio
+        id="win-audio"
+        class="background-audio"
+        src="audio/win-audio.mp3"
+        autoplay
+        loop
+        muted
+      ></audio>
+      <audio
+        id="lose-audio"
+        class="background-audio"
+        src="audio/lose-audio.mp3"
+        autoplay
+        loop
+        muted
+      ></audio>
+      <!-- Modals -->
+      <section id="modal-section">
+        <div
+          id="modal-instruction"
+          class="modal fade"
+          tabindex="-1"
+          style="display: none"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">How to Start your Journey</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  Notice: Best experience at full screen:
+                  <strong>1512 x 945</strong>!
+                </p>
                 <ol>
                   <li>Enter your name.</li>
                   <li>Choose your Hero.</li>
                   <li>Choose difficulty level</li>
                   <li>Click on "Start Game"</li>
                 </ol>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn-moreinfo" data-bs-toggle="modal" data-bs-target="#modal-game" data-bs-dismiss="modal">Game Rules</button>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-moreinfo"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal-game"
+                  data-bs-dismiss="modal"
+                >
+                  Game Rules
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div id="modal-game" class="modal fade" tabindex="-1" style="display: none;">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Game Rules</h5>
-              <button type="button" class="btn-close btn-close-x" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p><strong>Basic game rules:</strong></p>
-              <p>Basically, you need to type the following text sample shown on the game screen. Remember that you cannot use the key “Backspace” or “Delete” to remove the letters you typed.</p>
-              <p><strong>Hero:</strong> each hero will have different magics.</p>
-              <p><strong>How to defeat the monster:</strong></p>
-              <p>You need to complete the typing before the time is up without violating the allowed percentage of incorrect words (25% of total words). The chosen hero will launch their first and final attack when you complete 45% and 100% of the text respectively.</p>
-              <p><strong>Indicators:</strong></p>
-              <ul>
-              <li><strong>Powder Gauge: </strong> It will be charged up every time you type a wrong word, and you will see it blinked when it is almost full. When it reaches 100%, the monster will attack, and you lose. </li>
-              <li><strong>Magic Gauge: </strong> It indicates how much percentage you have completed the typing so far. You will see it blinked when it is close to the magic attack launch…so keep it up! </li>
-              </ul>
-              <p><strong>Difficulty level:</strong> The higher level, the more words to type and less time </p>
-              <p><strong>Game Round:</strong> There are total 3 rounds for each difficulty level. You only can move to the next round when you win, and cannot move from one difficulty level to another.</p>
-              <p><strong>Buttons:</strong></p>
-              <ul>
-              <li><strong>Quit: </strong> Go to the end-game screen. </li>
-              <li><strong>Play Again: </strong> Go back to the game screen and play the same level. </li>
-              <li><strong>Back to Menu: </strong> Go back to the splash game screen. </li>
-              </ul>
 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary btn-close-tab" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" style="display: none;">Got it</button>
+        <div
+          id="modal-game"
+          class="modal fade"
+          tabindex="-1"
+          style="display: none"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Game Rules</h5>
+                <button
+                  type="button"
+                  class="btn-close btn-close-x"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Basic game rules:</strong></p>
+                <p>
+                  Basically, you need to type the following text sample shown on
+                  the game screen. Remember that you cannot use the key
+                  “Backspace” or “Delete” to remove the letters you typed.
+                </p>
+                <p>
+                  <strong>Hero:</strong> each hero will have different magics.
+                </p>
+                <p><strong>How to defeat the monster:</strong></p>
+                <p>
+                  You need to complete the typing before the time is up without
+                  violating the allowed percentage of incorrect words (25% of
+                  total words). The chosen hero will launch their first and
+                  final attack when you complete 45% and 100% of the text
+                  respectively.
+                </p>
+                <p><strong>Indicators:</strong></p>
+                <ul>
+                  <li>
+                    <strong>Powder Gauge: </strong> It will be charged up every
+                    time you type a wrong word, and you will see it blinked when
+                    it is almost full. When it reaches 100%, the monster will
+                    attack, and you lose.
+                  </li>
+                  <li>
+                    <strong>Magic Gauge: </strong> It indicates how much
+                    percentage you have completed the typing so far. You will
+                    see it blinked when it is close to the magic attack
+                    launch…so keep it up!
+                  </li>
+                </ul>
+                <p>
+                  <strong>Difficulty level:</strong> The higher level, the more
+                  words to type and less time
+                </p>
+                <p>
+                  <strong>Game Round:</strong> There are total 3 rounds for each
+                  difficulty level. You only can move to the next round when you
+                  win, and cannot move from one difficulty level to another.
+                </p>
+                <p><strong>Buttons:</strong></p>
+                <ul>
+                  <li><strong>Quit: </strong> Go to the end-game screen.</li>
+                  <li>
+                    <strong>Play Again: </strong> Go back to the game screen and
+                    play the same level.
+                  </li>
+                  <li>
+                    <strong>Back to Menu: </strong> Go back to the splash game
+                    screen.
+                  </li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-close-tab"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="display: none"
+                >
+                  Got it
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div id="modal-credits" class="modal fade" tabindex="-1" style="display: none;">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Credits</h5>
-              <button type="button" class="btn-close btn-close-x" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p> <strong>Game Art:</strong> Jorge Puertovannetti</p>
-              <p> <strong>Background images: </strong> EPIC GAMES & Google (Creative Common License)</p>
-              <p> <strong>Icons</strong> Iconmonstr.com</p>
-              <p> <strong>Vector images:</strong> </p>
-              <ul>
-                <li>by macrovector (Freepik.com)</li>
-                <li>by Smashicons (Freepik.com)</li>
-                <li>by mamewmy (Freepik.com)</li>
-              </ul>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary btn-close-tab" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" style="display: none;">Got it</button>
+        <div
+          id="modal-credits"
+          class="modal fade"
+          tabindex="-1"
+          style="display: none"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Credits</h5>
+                <button
+                  type="button"
+                  class="btn-close btn-close-x"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Game Art:</strong> Jorge Puertovannetti</p>
+                <p>
+                  <strong>Background images: </strong> EPIC GAMES & Google
+                  (Creative Common License)
+                </p>
+                <p><strong>Icons</strong> Iconmonstr.com</p>
+                <p><strong>Vector images:</strong></p>
+                <ul>
+                  <li>by macrovector (Freepik.com)</li>
+                  <li>by Smashicons (Freepik.com)</li>
+                  <li>by mamewmy (Freepik.com)</li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-close-tab"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="display: none"
+                >
+                  Got it
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>  
-      
+      </section>
     </main>
-    
-   <!-- jQuery -->
-   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-   <!-- Bootstrap -->
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   <!-- Custom Script -->
-  <script src="./scripts/index.js"></script>
+
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom Script -->
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
