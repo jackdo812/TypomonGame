@@ -1,9 +1,29 @@
 /* ---------General--------- */
+#resolusion-warning {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: red;
+  text-align: center;
+  border: 1px dashed rgb(235, 76, 76);
+  background-color: #fffffe;
+  padding: 0.3rem 1rem;
+  margin: 0.5rem;
+  z-index: 300;
+}
+
+@media (min-width: 1512px) {
+  #resolusion-warning {
+    display: none;
+  }
+}
+
 body {
   font-family: "Changa", sans-serif;
   /* overflow: hidden; */
   margin: 0 auto;
-  width: 1512px;
+  min-width: 1512px;
   max-width: 100%;
 }
 
